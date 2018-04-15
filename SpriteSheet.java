@@ -1,5 +1,3 @@
-package com.game.src.main;
-
 import java.awt.image.BufferedImage;
 
 public class SpriteSheet {
