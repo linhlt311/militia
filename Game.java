@@ -23,13 +23,21 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
+        private Menu menu;
 	
 //	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
         private Bracket bracket = new Bracket(0,0);
+        public static enum STATE{
+            MENU,
+            GAME
+        }
+        
+        public static STATE State = STATE.MENU;
 	
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
+                menu = new Menu();
 	}
 	
 	private synchronized void start() {
@@ -62,7 +70,8 @@ public class Game extends Canvas implements Runnable {
 			if (frames % 20 == 0) {
 //				System.out.println(++secs);
 			}
-			render();
+                        render();
+                         
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
@@ -81,13 +90,17 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
-		
+		if (State == STATE.GAME){
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-		grid.drawGrid(g);
-		if(bracketboo){
-                    bracket.drawBracket(g);
+                    grid.drawGrid(g);
+                    if(bracketboo){
+                        bracket.drawBracket(g);
+                    }
                 }
-		//////////////////////////////
+                else if(State == STATE.MENU){
+                    menu.render(g);
+                }
+                //////////////////////////////
 		g.dispose();
 		bs.show();
 	}
@@ -107,6 +120,7 @@ public class Game extends Canvas implements Runnable {
             // override only those which interests us
 			@Override //I override only one method for presentation
 			public void mousePressed(MouseEvent e) {
+                            if (State == STATE.GAME) {
 				int x = (int)(e.getX()/80) - 2;
 				int y = (int)(e.getY()/80);
                                 if (1<=x && 8>=x && 1<=y && 8>=y)
@@ -116,6 +130,7 @@ public class Game extends Canvas implements Runnable {
                                     game.bracket.setX(x);
                                     game.bracket.setY(y);
                                 }
+                            }
 			}
 		});
 		frame.pack();
