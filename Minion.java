@@ -1,26 +1,30 @@
 import java.util.ArrayList;
 
 public class Minion extends Monster {
+	Minion(Position pos) {
+		super(pos);
+	}
+
 	@Override
-	public ArrayList<Position<Integer, Integer>> calculateMoveArea() {
+	public void calculateMoveArea() {
 		moveArea.clear();
-		Position<Integer, Integer> tmp = new Position<Integer, Integer>(curPosition.getX()+1,curPosition.getY());
+		Position tmp = new Position(curPosition.getX()+1,curPosition.getY());
 		if (tmp.getX() <= 7) this.moveArea.add(tmp);
-		tmp = new Position<Integer, Integer>(curPosition.getX(),curPosition.getY());
+		tmp = new Position(curPosition.getX(),curPosition.getY());
 		this.moveArea.add(tmp);
-		tmp = new Position<Integer, Integer>(curPosition.getX()-1,curPosition.getY());
-		if (tmp.getX() <= 7) this.moveArea.add(tmp);
-		tmp = new Position<Integer, Integer>(curPosition.getX(),curPosition.getY()+1);
-		if (tmp.getX() <= 7) this.moveArea.add(tmp);
-		tmp = new Position<Integer, Integer>(curPosition.getX(),curPosition.getY()-1);
-		if (tmp.getX() <= 7) this.moveArea.add(tmp);
-		return null;
+		tmp = new Position(curPosition.getX()-1,curPosition.getY());
+		if (tmp.getX() >= 0) this.moveArea.add(tmp);
+		tmp = new Position(curPosition.getX(),curPosition.getY()+1);
+		if (tmp.getY() <= 7) this.moveArea.add(tmp);
+		tmp = new Position(curPosition.getX(),curPosition.getY()-1);
+		if (tmp.getY() >= 0) this.moveArea.add(tmp);
 	}
 	
 	@Override
-	public boolean move(Position<Integer, Integer> pos) {
-		curPosition = pos;
-		return false;
+	public boolean move() {
+		int tmp = (int)(Math.random() * this.moveArea.size());
+		curPosition = this.moveArea.get(tmp);
+		return true;
 	}
 	
 }
