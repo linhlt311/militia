@@ -2,6 +2,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
@@ -24,8 +25,8 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
         private Menu menu;
-	
-//	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+
+	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
         private Bracket bracket = new Bracket(0,0);
         public static enum STATE{
@@ -38,6 +39,7 @@ public class Game extends Canvas implements Runnable {
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
                 menu = new Menu();
+                this.addMouseListener(new MouseInput());
 	}
 	
 	private synchronized void start() {
@@ -91,7 +93,7 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
 		if (State == STATE.GAME){
-//		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
                     grid.drawGrid(g);
                     if(bracketboo){
                         bracket.drawBracket(g);
