@@ -4,5 +4,7 @@ public abstract class Monster {
 	protected Position<Integer, Integer> curPosition;
 	protected ArrayList<Position<Integer, Integer>> moveArea;
 	protected ArrayList<Position<Integer, Integer>> attackArea;
+	
+	abstract ArrayList<Position<Integer, Integer>> calculateMoveArea();
 	abstract boolean move(Position<Integer, Integer> pos);
 }
