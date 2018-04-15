@@ -1,5 +1,4 @@
 
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +19,7 @@ public class Game extends Canvas implements Runnable {
 	public static final int SCALE = 2;
 	public static final int ROWS = 8;
 	public static final int LINES = 8;
+    public static boolean bracketboo = false;
 	public final String TITLE = "Militia";
 	
 	private boolean running = false;
@@ -27,6 +27,7 @@ public class Game extends Canvas implements Runnable {
 	
 //	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
+    private Bracket bracket = new Bracket(0,0);
 	
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
@@ -84,7 +85,9 @@ public class Game extends Canvas implements Runnable {
 		
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		grid.drawGrid(g);
-		
+		if(bracketboo){
+            bracket.drawBracket(g);
+        }
 		//////////////////////////////
 		g.dispose();
 		bs.show();
@@ -107,7 +110,13 @@ public class Game extends Canvas implements Runnable {
 			public void mousePressed(MouseEvent e) {
 				int x = (int)(e.getX()/80) - 2;
 				int y = (int)(e.getY()/80);
-				System.out.println(x + "," + y);
+                                if (1<=x && 8>=x && 1<=y && 8>=y)
+                                {
+                                    bracketboo = true;
+                                    System.out.println(x + "," + y);
+                                    game.bracket.setX(x);
+                                    game.bracket.setY(y);
+                                }
 			}
 		});
 		frame.pack();
