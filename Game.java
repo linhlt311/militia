@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 public class Game extends Canvas implements Runnable {
 	
+	//Variables
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = WIDTH / 12 * 9;
@@ -25,29 +26,22 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
-<<<<<<< HEAD
-	
-	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private TileGrid grid;
-    private Bracket bracket = new Bracket(0,0);
-=======
-        private Menu menu;
 
 	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
-        private Bracket bracket = new Bracket(0,0);
-        public static enum STATE{
-            MENU,
-            GAME
-        }
-        
-        public static STATE State = STATE.MENU;
->>>>>>> develop
-	
+    private Bracket bracket = new Bracket(0,0);
+    public static enum STATE{
+        MENU,
+        GAME
+    }     
+    public static STATE State = STATE.MENU;
+    public static MenuButton menuButton;
+    
+    //Functions
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
-                menu = new Menu();
-                this.addMouseListener(new MouseInput());
+        this.addMouseListener(new MouseInput());
+        menuButton = new MenuButton();
 	}
 	
 	private synchronized void start() {
@@ -109,7 +103,7 @@ public class Game extends Canvas implements Runnable {
                     }
                 }
                 else if(State == STATE.MENU){
-                    menu.render(g);
+                    menuButton.drawButtons(g);
                 }
         //////////////////////////////
 		g.dispose();
