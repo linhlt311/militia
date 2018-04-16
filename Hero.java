@@ -25,6 +25,12 @@ abstract class Hero {
         }
     }
     
+    public boolean equals(Object o) {
+        if(o instanceof Hero) 
+            return curPosition.equals(((Hero) o).curPosition);
+        return false;
+    }
+    
     abstract void calMoveArea();
     abstract void calAttackArea();
     abstract boolean move(Position pos);
