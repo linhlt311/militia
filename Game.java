@@ -131,6 +131,9 @@ public class Game extends Canvas implements Runnable {
                                     game.bracket.setX(x);
                                     game.bracket.setY(y);
                                 }
+                                else {
+                                    bracketboo = false;
+                                }
                             }
 			}
 		});
