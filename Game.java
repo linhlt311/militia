@@ -3,14 +3,10 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -21,23 +17,22 @@ public class Game extends Canvas implements Runnable {
 	public static final int SCALE = 2;
 	public static final int ROWS = 8;
 	public static final int LINES = 8;
-    public static boolean bracketboo = false;
+        public static boolean bracketboo = false;
 	public final String TITLE = "Militia";
 	
 	private boolean running = false;
 	private Thread thread;
 
-	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
-    private Bracket bracket = new Bracket(0,0);
-    public static enum STATE{
-        MENU,
-        GAME
-    }     
-    public static STATE State = STATE.MENU;
-    public static MenuButton menuButton;
-    
-    //Functions
+        private Background bg = new Background();
+        private Bracket bracket = new Bracket(0,0);
+        public static enum STATE{
+            MENU,
+            GAME
+        }     
+        public static STATE State = STATE.MENU;
+        public static MenuButton menuButton;
+
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
         this.addMouseListener(new MouseInput());
@@ -96,7 +91,8 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////
 
 		if (State == STATE.GAME){
-		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+                bg.drawBackground(g);
+//		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
                     grid.drawGrid(g);
                     if(bracketboo){
                         bracket.drawBracket(g);
@@ -134,6 +130,9 @@ public class Game extends Canvas implements Runnable {
                                     System.out.println(x + "," + y);
                                     game.bracket.setX(x);
                                     game.bracket.setY(y);
+                                }
+                                else {
+                                    bracketboo = false;
                                 }
                             }
 			}

@@ -53,7 +53,7 @@ public class Bracket implements ImageObserver {
 		return bracket;
 	}
         
-    public void drawBracket(Graphics g) {
+        public void drawBracket(Graphics g) {
             g.drawImage(bracket, (this.x+2)*BRACKETWIDTH, this.y*BRACKETWIDTH, BRACKETWIDTH, BRACKETWIDTH, (ImageObserver) this);
 	}
         

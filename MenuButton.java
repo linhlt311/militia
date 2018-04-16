@@ -67,10 +67,10 @@ public class MenuButton implements ImageObserver {
 	}
 	
 	public void drawButtons(Graphics g) {
-        Font fn1 = new Font("arial", Font.BOLD, 100);
+        Font fn1 = new Font("Berlin Sans FB Demi", Font.PLAIN, 150);
         g.setFont(fn1);
         g.setColor(Color.black);
-        g.drawString("MILITIA", Game.WIDTH / 2 + 50, 150);
+        g.drawString("MILITIA", Game.WIDTH / 2, 150);
 //        System.out.println(startButtonState);
         if (startButtonState) {
         	g.drawImage(startButton2, startButtonX, startButtonY, BUTTONWIDTH, BUTTONHEIGHT, (ImageObserver) this);
@@ -92,6 +92,7 @@ public class MenuButton implements ImageObserver {
 
 	}
 	
+        @Override
 	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
 		// TODO Auto-generated method stub
 		return false;
