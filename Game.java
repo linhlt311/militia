@@ -2,14 +2,10 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -26,9 +22,9 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
         private Menu menu;
 
-	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
         private Bracket bracket = new Bracket(0,0);
+        private Background bg = new Background();
         public static enum STATE{
             MENU,
             GAME
@@ -93,7 +89,8 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
 		if (State == STATE.GAME){
-		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+                bg.drawBackground(g);
+//		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
                     grid.drawGrid(g);
                     if(bracketboo){
                         bracket.drawBracket(g);
