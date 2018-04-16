@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	
-//	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
     private Bracket bracket = new Bracket(0,0);
 	
@@ -83,7 +83,7 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
 		
-//		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		grid.drawGrid(g);
 		if(bracketboo){
             bracket.drawBracket(g);
