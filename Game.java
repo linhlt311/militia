@@ -1,3 +1,4 @@
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 	
+	//Variables
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = WIDTH / 12 * 9;
@@ -20,9 +22,9 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean running = false;
 	private Thread thread;
-        private Menu menu;
 
 	private TileGrid grid;
+//<<<<<<< HEAD
         private Bracket bracket = new Bracket(0,0);
         private Background bg = new Background();
         public static enum STATE{
@@ -32,10 +34,21 @@ public class Game extends Canvas implements Runnable {
         
         public static STATE State = STATE.MENU;
 	
+//=======
+//    private Bracket bracket = new Bracket(0,0);
+//    public static enum STATE{
+//        MENU,
+//        GAME
+//    }     
+//    public static STATE State = STATE.MENU;
+    public static MenuButton menuButton;
+    
+    //Functions
+//>>>>>>> 3431e89c6987b5b3afcfbc5d6548f17d142db984
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
-                menu = new Menu();
-                this.addMouseListener(new MouseInput());
+        this.addMouseListener(new MouseInput());
+        menuButton = new MenuButton();
 	}
 	
 	private synchronized void start() {
@@ -88,6 +101,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
+
 		if (State == STATE.GAME){
                 bg.drawBackground(g);
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
@@ -97,9 +111,9 @@ public class Game extends Canvas implements Runnable {
                     }
                 }
                 else if(State == STATE.MENU){
-                    menu.render(g);
+                    menuButton.drawButtons(g);
                 }
-                //////////////////////////////
+        //////////////////////////////
 		g.dispose();
 		bs.show();
 	}
