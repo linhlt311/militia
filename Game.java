@@ -1,3 +1,4 @@
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,33 +14,34 @@ import javax.swing.JPanel;
 
 public class Game extends Canvas implements Runnable {
 	
+	//Variables
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = WIDTH / 12 * 9;
 	public static final int SCALE = 2;
 	public static final int ROWS = 8;
 	public static final int LINES = 8;
-        public static boolean bracketboo = false;
+    public static boolean bracketboo = false;
 	public final String TITLE = "Militia";
 	
 	private boolean running = false;
 	private Thread thread;
-        private Menu menu;
 
 	private BufferedImage background = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private TileGrid grid;
-        private Bracket bracket = new Bracket(0,0);
-        public static enum STATE{
-            MENU,
-            GAME
-        }
-        
-        public static STATE State = STATE.MENU;
-	
+    private Bracket bracket = new Bracket(0,0);
+    public static enum STATE{
+        MENU,
+        GAME
+    }     
+    public static STATE State = STATE.MENU;
+    public static MenuButton menuButton;
+    
+    //Functions
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
-                menu = new Menu();
-                this.addMouseListener(new MouseInput());
+        this.addMouseListener(new MouseInput());
+        menuButton = new MenuButton();
 	}
 	
 	private synchronized void start() {
@@ -92,6 +94,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		//////////////////////////////
+
 		if (State == STATE.GAME){
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
                     grid.drawGrid(g);
@@ -100,9 +103,9 @@ public class Game extends Canvas implements Runnable {
                     }
                 }
                 else if(State == STATE.MENU){
-                    menu.render(g);
+                    menuButton.drawButtons(g);
                 }
-                //////////////////////////////
+        //////////////////////////////
 		g.dispose();
 		bs.show();
 	}

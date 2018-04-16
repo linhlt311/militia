@@ -16,10 +16,10 @@ import java.io.IOException;
  * @author MONMON
  */
 public class Bracket implements ImageObserver {
-        private int x;
+    private int x;
 	private int y;
 	private BufferedImage bracket;
-        public static final int BRACKETWIDTH = 80;
+    public static final int BRACKETWIDTH = 80;
 	
 	Bracket(int x, int y) {
 		this.x = x;
@@ -53,7 +53,7 @@ public class Bracket implements ImageObserver {
 		return bracket;
 	}
         
-        public void drawBracket(Graphics g) {
+    public void drawBracket(Graphics g) {
             g.drawImage(bracket, (this.x+2)*BRACKETWIDTH, this.y*BRACKETWIDTH, BRACKETWIDTH, BRACKETWIDTH, (ImageObserver) this);
 	}
         
