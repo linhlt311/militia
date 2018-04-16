@@ -1,5 +1,5 @@
-public class Sword extends Hero {
-    public Sword(Position pos) {
+public class Spear extends Hero {
+    public Spear(Position pos) {
         super(pos);
     }
     
@@ -21,12 +21,13 @@ public class Sword extends Hero {
         int x = curPosition.getX();
         int y = curPosition.getY();
         attackArea.clear();
-        for(int i = -1; i <= 1; i++) {
-            for(int j = -1; j <= 1; j++) {
-                Position tmp = new Position(x+i, y+j);
-                if(tmp.valid()) attackArea.add(tmp);
-            }
+        for(int i = -2; i <= 2; i++) {
+            Position tmp_1 = new Position(x+i, y-i);
+            if (tmp_1.valid()) attackArea.add(tmp_1);
+            Position tmp_2 = new Position(x+i, y+i);
+            if (tmp_2.valid()) attackArea.add(tmp_2);
         }
+        attackArea.remove(new Position(x, y));
         attackArea.remove(new Position(x, y));
     }
 
@@ -54,3 +55,4 @@ public class Sword extends Hero {
         return false;
     }
 }
+
