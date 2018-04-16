@@ -10,8 +10,8 @@ public class Sword extends Hero {
         moveArea.clear();
         for(int i = -2; i <= 2; i++) {
             for(int j = -2; j <= 2; j++) {
-                if(!((x+i) < 0 || (x+i) > 7
-                   || (y+j) < 0 || (y+j) > 7)) moveArea.add(new Position(x+i, y+j));
+                Position tmp = new Position(x+i, y+j);
+                if(tmp.valid()) moveArea.add(tmp);
             }
         }
     }
@@ -23,8 +23,8 @@ public class Sword extends Hero {
         attackArea.clear();
         for(int i = -1; i <= 1; i++) {
             for(int j = -1; j <= 1; j++) {
-                if(!((x+i) < 0 || (x+i) > 7
-                   || (y+j) < 0 || (y+j) > 7)) attackArea.add(new Position(x+i, y+j));
+                Position tmp = new Position(x+i, y+j);
+                if(tmp.valid()) attackArea.add(tmp);
             }
         }
         attackArea.remove(new Position(x, y));
