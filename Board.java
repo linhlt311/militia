@@ -5,17 +5,13 @@ import java.util.Scanner;
 public class Board {
     private static char[][] board;
     private static int X, Y;
-    private static ArrayList<Sword> swords;
-    private static ArrayList<Minion> minions;
-    private static ArrayList<Position> list_hero;
-    private static ArrayList<Position> list_mons;
+    private static ArrayList<Hero> heros;
+    private static ArrayList<Monster> monsters;
     
     Board(int X, int Y) {
         this.X = X; this.Y = Y;
-        swords = new ArrayList<Sword> ();
-        minions = new ArrayList<Minion> ();
-        list_hero = new ArrayList<Position> ();
-        list_mons = new ArrayList<Position> ();
+        heros = new ArrayList<Hero> ();
+        monsters = new ArrayList<Monster> ();
         
         board = new char[X][Y];
         for(int i = 0; i < X; i++) {
@@ -34,14 +30,14 @@ public class Board {
             int y = rand[i]%Y;
             int x = (rand[i] - y)/Y;
             //System.out.println(Integer.toString(rand[i])+','+x+','+y);
-            swords.add(new Sword(new Position(x, y)));
+            heros.add(new Sword(new Position(x, y)));
             board[x][y] = 'S';
         }
         
         for(int i = swordNumber; i < total; i++) {
             int y = rand[i]%Y;
             int x = (rand[i] - y)/Y;
-            minions.add(new Minion(new Position(x, y)));
+            monsters.add(new Minion(new Position(x, y)));
             board[x][y] = 'M';
         }
     }
@@ -65,17 +61,20 @@ public class Board {
         switch(event) {
             case HERO_MOVE:
                 board[pos.getX()][pos.getY()] = 'S';
-                if (list_mons.contains(pos)) list_mons.remove(pos);
+                Minion minion_1 = new Minion(pos);
+                if (monsters.contains(minion_1)) monsters.remove(minion_1);
                 break;
             case HERO_ATTACK:
-                if (list_mons.contains(pos)) {
-                    list_mons.remove(pos);
+                Minion minion_2 = new Minion(pos);
+                if (monsters.contains(minion_2)) {
+                    monsters.remove(minion_2);
                     board[pos.getX()][pos.getY()] = '-';
                 }
                 break;
             case MONS_MOVE:
                 board[pos.getX()][pos.getY()] = 'M';
-                if (list_hero.contains(pos)) list_hero.remove(pos);
+                Sword sword = new Sword(pos);
+                if (heros.contains(sword)) heros.remove(sword);
                 break;
             default:
                 break;
@@ -99,30 +98,16 @@ public class Board {
         System.out.println("x");
         
         Board board = new Board(8, 8);
-        board.random(1, 1);
+        board.random(0, 1);
         board.draw();
         
         int x;
         int y;
         Position tmp;
         
-        // get list position of hero and monster
-        //----------------------------------------------------------------------
-        for(Sword sword: swords) {
-            tmp = new Position(sword.curPosition.getX(), sword.curPosition.getY());
-            list_hero.add(tmp);
-        }
-     
-        for(Minion minion: minions) {
-            tmp = new Position(minion.curPosition.getX(), minion.curPosition.getY());
-            list_mons.add(tmp);
-        }
-        //----------------------------------------------------------------------
-        
         //Game Loop-------------------------------------------------------------
         do {
-            if (list_hero.isEmpty()) break;
-            for(Sword sword: swords) {
+            for(Hero sword: heros) {
                 // move sword
                 board.board[sword.curPosition.getX()][sword.curPosition.getY()] = '-';
                 
@@ -143,7 +128,7 @@ public class Board {
                 } while(!sword.move(tmp));
                 
                 board.update(Event.HERO_MOVE, tmp);
-                if(list_mons.isEmpty()) break;
+                if(monsters.isEmpty()) break;
                 
                 // sword attack
                 System.out.println("Attack by sword in" + '(' + 
@@ -163,23 +148,22 @@ public class Board {
                 } while(!sword.attack(tmp));
                 
                 board.update(Event.HERO_ATTACK, tmp);
-                if(list_mons.isEmpty()) break;
+                if(monsters.isEmpty()) break;
             }
             
-            if(list_mons.isEmpty()) break;
-            for(Minion minion: minions) {
-            	board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
+            for(Monster minion: monsters) {
+                board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
                 minion.move();
                 tmp = new Position(minion.curPosition.getX(),
                                    minion.curPosition.getY());
                 board.update(Event.MONS_MOVE, tmp);
             }
-        } while(!(list_mons.isEmpty() || list_hero.isEmpty()));
+        } while(!(monsters.isEmpty() || heros.isEmpty()));
         
         //----------------------------------------------------------------------
         
         //----------------------------------------------------------------------
-        if(list_mons.isEmpty()) System.out.println("You win");
+        if(monsters.isEmpty()) System.out.println("You win");
         else System.out.println("Stupid");
     }
 }
