@@ -99,7 +99,7 @@ public class Board {
         System.out.println("x");
         
         Board board = new Board(8, 8);
-        board.random(2, 1);
+        board.random(1, 1);
         board.draw();
         
         int x;
@@ -168,6 +168,7 @@ public class Board {
             
             if(list_mons.isEmpty()) break;
             for(Minion minion: minions) {
+            	board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
                 minion.move();
                 tmp = new Position(minion.curPosition.getX(),
                                    minion.curPosition.getY());

@@ -9,11 +9,16 @@ public abstract class Monster {
 	}
 	Monster(Position pos) {
 		curPosition = pos;
-		moveArea = new ArrayList();
+		moveArea = new ArrayList<Position>();
 	}
 	public ArrayList<Position> getMoveArea() {
 		return moveArea;
 	}
+	public boolean equals(Object obj) {
+        if(obj instanceof Monster) 
+            return curPosition.equals(((Monster) obj).curPosition);
+        return false;
+    }
 	abstract void calculateMoveArea();
 	abstract boolean move();
 }
