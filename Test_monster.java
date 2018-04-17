@@ -3,10 +3,10 @@ public class Test_monster {
 		Position pos = new Position(2,2);
 		Minion m1 = new Minion(pos);
 		m1.calculateMoveArea();
-		for(Position p: m1.getMoveArea()) {
-			System.out.println(p.getX() + ", " + p.getY()); 
-        }
+		System.out.println(m1.getCurrentPosition().getX() + "," + m1.getCurrentPosition().getY());
 		m1.move();
-		System.out.println(m1.getCurrentPosition().getX() + ", " + m1.getCurrentPosition().getY());
+		System.out.println(m1.getCurrentPosition().getX() + "," + m1.getCurrentPosition().getY());
+		m1.move();
+		System.out.println(m1.getCurrentPosition().getX() + "," + m1.getCurrentPosition().getY());
 	}
 }
