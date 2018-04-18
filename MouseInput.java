@@ -18,13 +18,10 @@ public class MouseInput implements MouseListener{
     public void mousePressed(MouseEvent e) {
     	if (Game.State == Game.STATE.MENU) {
     		int mx = e.getX();
-            int my = e.getY();
-//            public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 120, 200, 100, 50);
-//            public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 300, 100, 50);
+                int my = e.getY();
             if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 +120+274){
                 if (my >= 200 && my <= 274){
                     //Press play button
-                	System.out.println("Here");
                     MenuButton.startButtonState = true;
                 }
             }
@@ -43,6 +40,16 @@ public class MouseInput implements MouseListener{
                 }
             }
     	}
+        else if(Game.State == Game.STATE.MENU){
+            int mx = e.getX();
+            int my = e.getY();
+            if (mx >= Game.WIDTH - 600 && mx <= Game.WIDTH - 600 +274){
+                if (my >= 0 && my <= 74){
+                    //Press quit button
+                    MenuButton.exitButtonState = true;
+                }
+            }
+        }
     }
 
     @Override
@@ -54,10 +61,8 @@ public class MouseInput implements MouseListener{
     public void mouseReleased(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     	if (Game.State == Game.STATE.MENU) {
-    		int mx = e.getX();
+            int mx = e.getX();
             int my = e.getY();
-//            public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 120, 200, 100, 50);
-//            public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 300, 100, 50);
             if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 +120+274){
                 if (my >= 200 && my <= 274){
                     //Press play button
@@ -80,7 +85,18 @@ public class MouseInput implements MouseListener{
                     System.exit(1);
                 }
             }
-    	}
+        }
+        else if (Game.State == Game.STATE.GAME) {
+            int mx = e.getX();
+            int my = e.getY();
+            if (mx >= Game.WIDTH - 600 && mx <= Game.WIDTH - 600 +274){
+                if (my >= 0 && my <= 74){
+                    //release exit button
+                    Game.State = Game.STATE.MENU;
+                    MenuButton.exitButtonState = false;
+                }
+            }
+        }
     }
 
     @Override
