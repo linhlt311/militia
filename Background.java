@@ -20,7 +20,7 @@ public class Background implements ImageObserver {
     Background(){
              BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-			this.bg = loader.loadImage("/whitepg.png");
+			this.bg = loader.loadImage("/game-background.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -9,7 +9,7 @@ public class MenuBackground implements ImageObserver {
     MenuBackground(){
              BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-			this.bg = loader.loadImage("/whitepg.png");
+			this.bg = loader.loadImage("/menu-background1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
