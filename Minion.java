@@ -22,6 +22,7 @@ public class Minion extends Monster {
 	
 	@Override
 	public boolean move() {
+		calculateMoveArea();
 		int tmp = (int)(Math.random() * this.moveArea.size());
 		curPosition = this.moveArea.get(tmp);
 		return true;

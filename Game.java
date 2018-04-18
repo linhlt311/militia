@@ -17,26 +17,28 @@ public class Game extends Canvas implements Runnable {
 	public static final int SCALE = 2;
 	public static final int ROWS = 8;
 	public static final int LINES = 8;
-        public static boolean bracketboo = false;
+    public static boolean bracketboo = false;
 	public final String TITLE = "Militia";
 	
 	private boolean running = false;
 	private Thread thread;
 
 	private TileGrid grid;
-        private Background bg = new Background();
-        private Bracket bracket = new Bracket(0,0);
-        public static enum STATE{
-            MENU,
-            GAME
-        }     
-        public static STATE State = STATE.MENU;
-        public static MenuButton menuButton;
+    private Background bg = new Background();
+    private MenuBackground menuBg;
+    private Bracket bracket = new Bracket(0,0);
+    public static enum STATE{
+        MENU,
+        GAME
+    }     
+    public static STATE State = STATE.MENU;
+    public static MenuButton menuButton;
 
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
         this.addMouseListener(new MouseInput());
         menuButton = new MenuButton();
+        menuBg = new MenuBackground();
 	}
 	
 	private synchronized void start() {
@@ -100,7 +102,7 @@ public class Game extends Canvas implements Runnable {
                     }
                 }
                 else if(State == STATE.MENU){
-                    bg.drawBackground(g);
+                    menuBg.drawBackground(g);
                     menuButton.drawButtons(g);
                 }
         //////////////////////////////

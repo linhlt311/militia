@@ -40,7 +40,7 @@ public class MouseInput implements MouseListener{
                 }
             }
     	}
-        else if(Game.State == Game.STATE.MENU){
+        else if(Game.State == Game.STATE.GAME){
             int mx = e.getX();
             int my = e.getY();
             if (mx >= Game.WIDTH - 600 && mx <= Game.WIDTH - 600 +274){
