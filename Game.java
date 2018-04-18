@@ -24,19 +24,21 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 
 	private TileGrid grid;
-        private Background bg = new Background();
-        private Bracket bracket = new Bracket(0,0);
-        public static enum STATE{
-            MENU,
-            GAME
-        }     
-        public static STATE State = STATE.MENU;
-        public static MenuButton menuButton;
+    private Background bg = new Background();
+    private MenuBackground menuBg;
+    private Bracket bracket = new Bracket(0,0);
+    public static enum STATE{
+        MENU,
+        GAME
+    }     
+    public static STATE State = STATE.MENU;
+    public static MenuButton menuButton;
 
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
         this.addMouseListener(new MouseInput());
         menuButton = new MenuButton();
+        menuBg = new MenuBackground();
 	}
 	
 	private synchronized void start() {
@@ -99,6 +101,7 @@ public class Game extends Canvas implements Runnable {
                     }
                 }
                 else if(State == STATE.MENU){
+                	menuBg.drawBackground(g);
                     menuButton.drawButtons(g);
                 }
         //////////////////////////////
