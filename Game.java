@@ -93,15 +93,16 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////
 
 		if (State == STATE.GAME){
-                bg.drawBackground(g);
+                    bg.drawBackground(g);
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
                     grid.drawGrid(g);
+                    menuButton.drawMenuInGame(g);
                     if(bracketboo){
                         bracket.drawBracket(g);
                     }
                 }
                 else if(State == STATE.MENU){
-                	menuBg.drawBackground(g);
+                    menuBg.drawBackground(g);
                     menuButton.drawButtons(g);
                 }
         //////////////////////////////
