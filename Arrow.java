@@ -21,16 +21,14 @@ public class Arrow extends Hero {
         int x = curPosition.getX();
         int y = curPosition.getY();
         attackArea.clear();
+        Position tmp;
         for(int i = 0; i <= 7; i++) {
-            Position tmp = new Position(i, y);
+            tmp = new Position(i, y);
+            attackArea.add(tmp);
+            tmp = new Position(x, i);
             attackArea.add(tmp);
         }
         attackArea.remove(new Position(x, y));
-        
-        for(int j = 0; j <= 7; j++) {
-            Position tmp = new Postion(x, j);
-            attackArea.add(tmp);
-        }
         attackArea.remove(new Position(x, y));
     }
 
