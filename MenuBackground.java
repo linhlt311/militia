@@ -1,22 +1,21 @@
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
-public class MenuBackground implements ImageObserver {
-    private BufferedImage bg;
+public class MenuBackground extends DrawInterface implements ImageObserver {
     MenuBackground(){
-             BufferedImageLoader loader = new BufferedImageLoader();
+            BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-			this.bg = loader.loadImage("/menu-background1.png");
+			this.image = loader.loadImage("/menu-background1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
         }
-    public void drawBackground(Graphics g) {
-            g.drawImage(bg, 0, 0, Game.WIDTH*Game.SCALE+200, Game.HEIGHT*Game.SCALE, this);
-	}
+    @Override
+    public void draw(Graphics g) {
+        g.drawImage(image, 0, 0, Game.WIDTH*Game.SCALE+200, Game.HEIGHT*Game.SCALE, this);
+    }
 
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
