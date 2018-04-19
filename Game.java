@@ -148,7 +148,6 @@ public class Game extends Canvas implements Runnable {
 				int y = (int)(e.getY()/80);
                                 if (1<=x && 8>=x && 1<=y && 8>=y)
                                 {
-                                	
                                     bracketboo = true;
                                     System.out.println(x + "," + y);
                                     game.bracket.setX(x);
