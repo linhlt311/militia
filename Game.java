@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
@@ -33,12 +35,20 @@ public class Game extends Canvas implements Runnable {
     }     
     public static STATE State = STATE.MENU;
     public static MenuButton menuButton;
+    public Board board;
+    public static ArrayList<HeroInterface> heroInterfaces = new ArrayList <HeroInterface> ();
 
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
         this.addMouseListener(new MouseInput());
         menuButton = new MenuButton();
         menuBg = new MenuBackground();
+        board = new Board(ROWS, LINES);
+        board.random(1, 1);
+        heroInterfaces.clear();
+        for(Hero hero: board.heros) {
+        	heroInterfaces.add(new HeroInterface(hero.curPosition.getX()+1, hero.curPosition.getY()+1));
+        }
 	}
 	
 	private synchronized void start() {
@@ -93,18 +103,26 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////
 
 		if (State == STATE.GAME){
-                    bg.drawBackground(g);
+			bg.drawBackground(g);
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-                    grid.drawGrid(g);
-                    menuButton.drawMenuInGame(g);
-                    if(bracketboo){
-                        bracket.drawBracket(g);
-                    }
-                }
-                else if(State == STATE.MENU){
-                    menuBg.drawBackground(g);
-                    menuButton.drawButtons(g);
-                }
+            grid.drawGrid(g);
+            menuButton.drawMenuInGame(g);                  
+//          draw monster and hero
+            for(int i=0; i<heroInterfaces.size(); i++) {
+            	heroInterfaces.get(0).drawHero(g);
+            }
+//          heroInterface.drawHero(g);
+////////////////////////
+            if(bracketboo){
+            	bracket.drawBracket(g);
+            }
+		}
+        else if(State == STATE.MENU){
+        	this.init();
+            menuBg.drawBackground(g);
+            menuButton.drawButtons(g);
+        }			
+		
         //////////////////////////////
 		g.dispose();
 		bs.show();
@@ -130,6 +148,7 @@ public class Game extends Canvas implements Runnable {
 				int y = (int)(e.getY()/80);
                                 if (1<=x && 8>=x && 1<=y && 8>=y)
                                 {
+                                	
                                     bracketboo = true;
                                     System.out.println(x + "," + y);
                                     game.bracket.setX(x);

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Board {
     private static char[][] board;
     private static int X, Y;
-    private static ArrayList<Hero> heros;
+    public ArrayList<Hero> heros;
     private static ArrayList<Monster> monsters;
     
     Board(int X, int Y) {
@@ -83,87 +83,87 @@ public class Board {
         draw();
     }
     
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        
-        System.out.println("Sword (S) move area is 5*5 and attack area is 3*3");
-        System.out.println("Minion (M) move random (Up, Down, Left, Right)");
-        System.out.println("-------------> y");
-        System.out.println("|");
-        System.out.println("|   TRUC");
-        System.out.println("|   TOA");
-        System.out.println("|   DO");
-        System.out.println("|");
-        System.out.println("V");
-        System.out.println("x");
-        
-        Board board = new Board(8, 8);
-        board.random(0, 1);
-        board.draw();
-        
-        int x;
-        int y;
-        Position tmp;
-        
-        //Game Loop-------------------------------------------------------------
-        do {
-            for(Hero sword: heros) {
-                // move sword
-                board.board[sword.curPosition.getX()][sword.curPosition.getY()] = '-';
-                
-                System.out.println("Move sword in" + '(' + 
-                        Integer.toString(sword.curPosition.getX()) + ',' + 
-                        sword.curPosition.getY() + ')');
-                
-                do {
-                    System.out.print("Enter x: ");
-                    x = in.nextInt();
-                    System.out.print("Enter y: ");
-                    y = in.nextInt();
-                    tmp = new Position(x, y);
-                    
-                    // check valid position
-                    // print notification
-                    
-                } while(!sword.move(tmp));
-                
-                board.update(Event.HERO_MOVE, tmp);
-                if(monsters.isEmpty()) break;
-                
-                // sword attack
-                System.out.println("Attack by sword in" + '(' + 
-                        Integer.toString(sword.curPosition.getX()) + ',' + 
-                        sword.curPosition.getY() + ')');
-                
-                do {
-                    System.out.print("Enter x: ");
-                    x = in.nextInt();
-                    System.out.print("Enter y: ");
-                    y = in.nextInt();
-                    tmp = new Position(x, y);
-                    
-                    // check valid position
-                    // print notification
-                    
-                } while(!sword.attack(tmp));
-                
-                board.update(Event.HERO_ATTACK, tmp);
-                if(monsters.isEmpty()) break;
-            }
-            
-            for(Monster minion: monsters) {
-                board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
-                minion.move();
-                tmp = new Position(minion.curPosition.getX(),
-                                   minion.curPosition.getY());
-                board.update(Event.MONS_MOVE, tmp);
-            }
-        } while(!(monsters.isEmpty() || heros.isEmpty()));
-        
-        //----------------------------------------------------------------------
-        
-        //----------------------------------------------------------------------
-        if(monsters.isEmpty()) System.out.println("You win");
-        else System.out.println("Stupid");
-    }
+//    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//        
+//        System.out.println("Sword (S) move area is 5*5 and attack area is 3*3");
+//        System.out.println("Minion (M) move random (Up, Down, Left, Right)");
+//        System.out.println("-------------> y");
+//        System.out.println("|");
+//        System.out.println("|   TRUC");
+//        System.out.println("|   TOA");
+//        System.out.println("|   DO");
+//        System.out.println("|");
+//        System.out.println("V");
+//        System.out.println("x");
+//        
+//        Board board = new Board(8, 8);
+//        board.random(0, 1);
+//        board.draw();
+//        
+//        int x;
+//        int y;
+//        Position tmp;
+//        
+//        //Game Loop-------------------------------------------------------------
+//        do {
+//            for(Hero sword: heros) {
+//                // move sword
+//                board.board[sword.curPosition.getX()][sword.curPosition.getY()] = '-';
+//                
+//                System.out.println("Move sword in" + '(' + 
+//                        Integer.toString(sword.curPosition.getX()) + ',' + 
+//                        sword.curPosition.getY() + ')');
+//                
+//                do {
+//                    System.out.print("Enter x: ");
+//                    x = in.nextInt();
+//                    System.out.print("Enter y: ");
+//                    y = in.nextInt();
+//                    tmp = new Position(x, y);
+//                    
+//                    // check valid position
+//                    // print notification
+//                    
+//                } while(!sword.move(tmp));
+//                
+//                board.update(Event.HERO_MOVE, tmp);
+//                if(monsters.isEmpty()) break;
+//                
+//                // sword attack
+//                System.out.println("Attack by sword in" + '(' + 
+//                        Integer.toString(sword.curPosition.getX()) + ',' + 
+//                        sword.curPosition.getY() + ')');
+//                
+//                do {
+//                    System.out.print("Enter x: ");
+//                    x = in.nextInt();
+//                    System.out.print("Enter y: ");
+//                    y = in.nextInt();
+//                    tmp = new Position(x, y);
+//                    
+//                    // check valid position
+//                    // print notification
+//                    
+//                } while(!sword.attack(tmp));
+//                
+//                board.update(Event.HERO_ATTACK, tmp);
+//                if(monsters.isEmpty()) break;
+//            }
+//            
+//            for(Monster minion: monsters) {
+//                board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
+//                minion.move();
+//                tmp = new Position(minion.curPosition.getX(),
+//                                   minion.curPosition.getY());
+//                board.update(Event.MONS_MOVE, tmp);
+//            }
+//        } while(!(monsters.isEmpty() || heros.isEmpty()));
+//        
+//        //----------------------------------------------------------------------
+//        
+//        //----------------------------------------------------------------------
+//        if(monsters.isEmpty()) System.out.println("You win");
+//        else System.out.println("Stupid");
+//    }
 }
