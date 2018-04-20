@@ -13,19 +13,19 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable {
 	
 	//Variables
-	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 600;
-	public static final int HEIGHT = WIDTH / 12 * 9;
-	public static final int SCALE = 2;
-	public static final int ROWS = 8;
-	public static final int LINES = 8;
+    private static final long serialVersionUID = 1L;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = WIDTH / 12 * 9;
+    public static final int SCALE = 2;
+    public static final int ROWS = 8;
+    public static final int LINES = 8;
     public static boolean bracketboo = false;
-	public final String TITLE = "Militia";
+    public final String TITLE = "Militia";
 	
-	private boolean running = false;
-	private Thread thread;
+    private boolean running = false;
+    private Thread thread;
 
-	private TileGrid grid;
+    private TileGrid grid;
     private Background bg = new Background();
     private MenuBackground menuBg;
     private Bracket bracket = new Bracket(0,0);
@@ -52,13 +52,13 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private synchronized void start() {
-		if (running) {
-			return;
-		}
+            if (running) {
+		return;
+            }
 		
-		running = true;
-		thread = new Thread(this);
-		thread.start();
+            running = true;
+            thread = new Thread(this);
+            thread.start();
 	}
 	
 	private synchronized void stop() throws InterruptedException {
@@ -103,9 +103,9 @@ public class Game extends Canvas implements Runnable {
 		//////////////////////////////
 
 		if (State == STATE.GAME){
-			bg.drawBackground(g);
+			bg.draw(g);
 //		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-            grid.drawGrid(g);
+            grid.draw(g);
             menuButton.drawMenuInGame(g);                  
 //          draw monster and hero
             for(int i=0; i<heroInterfaces.size(); i++) {
@@ -114,15 +114,14 @@ public class Game extends Canvas implements Runnable {
 //          heroInterface.drawHero(g);
 ////////////////////////
             if(bracketboo){
-            	bracket.drawBracket(g);
+            	bracket.draw(g);
             }
 		}
         else if(State == STATE.MENU){
         	this.init();
-            menuBg.drawBackground(g);
+            menuBg.draw(g);
             menuButton.drawButtons(g);
         }			
-		
         //////////////////////////////
 		g.dispose();
 		bs.show();
