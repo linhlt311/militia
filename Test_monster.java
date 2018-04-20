@@ -8,7 +8,7 @@ public class Test_monster {
 		Minion m2 = new Minion(pos2);
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 		monsters.add(m2);
-		m1.calculateMoveArea(monsters);
+		m1.calMoveArea(monsters);
 		System.out.println(m1.getCurrentPosition().getX() + "," + m1.getCurrentPosition().getY());
 		System.out.println(m1.moveArea.size());
 //		m1.move(pos2,null);

@@ -11,7 +11,7 @@ public class Ghost extends Monster{
 		cloak = 1;
 	}
 	@Override
-	void calculateMoveArea(ArrayList<Monster> monsters) {
+	void calMoveArea(ArrayList<Monster> monsters) {
 		moveArea.clear();
 		Position tmp = new Position(curPosition.getX()+2,curPosition.getY()+2);
 		if (tmp.getX() <= Config.GAME_WIDTH && tmp.getY() <= Config.GAME_HEIGHT) this.moveArea.add(tmp);
@@ -31,7 +31,7 @@ public class Ghost extends Monster{
 
 	@Override
 	public boolean move(Position pos, ArrayList<Monster> mons) {
-		calculateMoveArea(mons);
+		calMoveArea(mons);
 		Position min = curPosition;
 		for (Position position: moveArea) {
 			if (min.getDistance(pos) > position.getDistance(pos)) {
