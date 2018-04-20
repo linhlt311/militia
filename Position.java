@@ -18,6 +18,6 @@ public class Position {
         return false;
     }
     public boolean valid() {
-        return (0 <= x && x <= 7 && 0 <= y && y <= 7);
+        return (0 <= x && x < Config.GAME_WIDTH && 0 <= y && y < Config.GAME_HEIGHT);
     }
 }
