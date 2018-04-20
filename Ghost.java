@@ -23,6 +23,10 @@ public class Ghost extends Monster{
 		if (tmp.getX() >= 0 && tmp.getY() <= Config.GAME_HEIGHT) this.moveArea.add(tmp);
 		tmp = new Position(curPosition.getX()-2,curPosition.getY()-2);
 		if (tmp.getX() >= 0 && tmp.getY() >= 0) this.moveArea.add(tmp);		
+		for(Monster mons: monsters) {
+			Position pos = mons.curPosition;
+			moveArea.remove(pos);
+		}
 	}
 
 	@Override
