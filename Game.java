@@ -54,6 +54,7 @@ public class Game extends Canvas implements Runnable {
         board = new Board(ROWS, LINES);
         board.random(1, 1);
         heroInterface = new HeroInterface();
+        Playstate = PLAYSTATE.PENDING;
 	}
 	
 	private synchronized void start() {

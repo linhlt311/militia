@@ -163,7 +163,7 @@ public class Board {
             
             for(Monster minion: monsters) {
                 board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
-                minion.move();
+//                minion.move();
                 tmp = new Position(minion.curPosition.getX(),
                                    minion.curPosition.getY());
                 board.update(Event.MONS_MOVE, tmp);
