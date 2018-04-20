@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Board {
     private static char[][] board;
     private static int X, Y;
-    private static ArrayList<Hero> heros;
+    public static ArrayList<Hero> heros;
     private static ArrayList<Monster> monsters;
     
     Board(int X, int Y) {
@@ -56,7 +56,7 @@ public class Board {
         MONS_MOVE
     }
     
-    // update board afer each event
+    // update board atfer each event
     void update(Event event, Position pos) {
         switch(event) {
             case HERO_MOVE:
@@ -163,7 +163,7 @@ public class Board {
             
             for(Monster minion: monsters) {
                 board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
-                minion.move();
+//                minion.move();
                 tmp = new Position(minion.curPosition.getX(),
                                    minion.curPosition.getY());
                 board.update(Event.MONS_MOVE, tmp);

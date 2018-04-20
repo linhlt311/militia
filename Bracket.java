@@ -21,7 +21,7 @@ public class Bracket extends DrawInterface implements ImageObserver {
 		this.y = y;		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-                    this.image = loader.loadImage("/bracket.png");
+                    this.image = loader.loadImage("/bracket1.png");
 		} catch (IOException e) {
                     e.printStackTrace();
 		}
