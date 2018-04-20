@@ -25,6 +25,17 @@ abstract class Hero {
         }
     }
     
+    public ArrayList<Position> getMoveArea() {
+       calMoveArea();
+       return moveArea;
+    }
+    
+    public ArrayList<Position> getAttackArea() {
+        calAttackArea();
+        return attackArea;
+    }
+    
+    @Override
     public boolean equals(Object o) {
         if(o instanceof Hero) 
             return curPosition.equals(((Hero) o).curPosition);

@@ -83,6 +83,16 @@ public class Board {
         draw();
     }
     
+    public Hero getHero(int x, int y) {
+        Position tmp = new Position(x, y);
+        for(Hero hero: heros) {
+            if (hero.curPosition.equals(tmp))
+                    return hero;
+        }
+        
+        return null;
+    }
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         

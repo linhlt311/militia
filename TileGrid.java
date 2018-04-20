@@ -4,33 +4,38 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
-public class TileGrid implements ImageObserver {
-	private BufferedImage tile;
-	private int total;
-	private Tile tiles[];
-	public static final int TILEWIDTH = 80;
-	
-	TileGrid(int x, int y) {
-		this.total = x*y;
-		int count = 0;
-		tiles = new Tile[total];
-		for(int i = 0; i < x ; i++)
-			for(int j = 0; j < y; j++) {
-				tiles[count] = new Tile(i+3, j+1);
-				count++;
-			}
-	}
-	
-	public void drawGrid(Graphics g) {
-		for(int i = 0; i < total; i++) {
-			this.tile = tiles[i].getTileSprite();
-			g.drawImage(tile, tiles[i].getX()*TILEWIDTH, tiles[i].getY()*TILEWIDTH, TILEWIDTH, TILEWIDTH, this);
-		}
-	}
+public class TileGrid extends DrawInterface implements ImageObserver {
+    private int total;
+    private Tile tiles[];
+    public static final int TILEWIDTH = 80;
+    TileGrid(int x, int y) {
+        this.total = x*y;
+        int count = 0;
+        tiles = new Tile[total];
+        for(int i = 0; i < x ; i++){
+            for(int j = 0; j < y; j++) {
+                tiles[count] = new Tile(i+3, j+1);
+                count++;
+            }
+        }
+    }
+//    public void drawGrid(Graphics g) {
+//	for(int i = 0; i < total; i++) {
+//            this.image = tiles[i].getSprite();
+//            g.drawImage(image, tiles[i].getX()*TILEWIDTH, tiles[i].getY()*TILEWIDTH, TILEWIDTH, TILEWIDTH, this);
+//	}
+//    }
 
-	@Override
-	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-		// TODO Auto-generated method stub
-		return false;
+    @Override
+    public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void draw(Graphics g) {
+        for(int i = 0; i < total; i++) {
+            this.image = tiles[i].getSprite();
+            g.drawImage(image, tiles[i].getX()*TILEWIDTH, tiles[i].getY()*TILEWIDTH, TILEWIDTH, TILEWIDTH, this);
 	}
+    }
 }

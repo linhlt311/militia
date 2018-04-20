@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -14,6 +13,8 @@ public class MenuButton implements ImageObserver {
 	private int helpButtonY = 300;
 	private int quitButtonX = Game.WIDTH / 2 + 120;
 	private int quitButtonY = 400;
+        private int menuGameX = Game.WIDTH - 600;
+        private int menuGameY = 0;
 	private static final int BUTTONWIDTH = 274;
 	private static final int BUTTONHEIGHT = 74;
 	private BufferedImage startButton;
@@ -22,9 +23,12 @@ public class MenuButton implements ImageObserver {
 	private BufferedImage startButton2;
 	private BufferedImage helpButton2;
 	private BufferedImage quitButton2;
+        private BufferedImage exitButton;
+        private BufferedImage exitButton2;
 	public static boolean startButtonState = false;
 	public static boolean helpButtonState = false;
 	public static boolean quitButtonState = false;
+        public static boolean exitButtonState = false;
 
 	
 	MenuButton() {
@@ -46,6 +50,11 @@ public class MenuButton implements ImageObserver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+                try {
+			this.exitButton = loader.loadImage("/exit-2.png");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		try {
 			this.startButton2 = loader.loadImage("/start-1.png");
@@ -64,6 +73,12 @@ public class MenuButton implements ImageObserver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+                try {
+			this.exitButton2 = loader.loadImage("/exit-1.png");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+                
 	}
 	
 	public void drawButtons(Graphics g) {
@@ -91,10 +106,19 @@ public class MenuButton implements ImageObserver {
         }
 
 	}
+        
+        public void drawMenuInGame(Graphics g) {
+            if (exitButtonState) {
+        	g.drawImage(exitButton2, menuGameX, menuGameY, BUTTONWIDTH, BUTTONHEIGHT, (ImageObserver) this);
+        } else {
+    		g.drawImage(exitButton, menuGameX, menuGameY, BUTTONWIDTH, BUTTONHEIGHT, (ImageObserver) this);
+        }
+        }
 	
         @Override
 	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
