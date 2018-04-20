@@ -11,6 +11,7 @@ abstract class Map {
     }
     
     Map() {
+        board = new char[Config.GAME_WIDTH][Config.GAME_HEIGHT];
         for(int i = 0; i < Config.GAME_WIDTH; i++) {
             for(int j = 0; j < Config.GAME_HEIGHT; j++) {
                 board[i][j] = '-';
@@ -24,7 +25,7 @@ abstract class Map {
     /**
      * Use this function for test
      */
-    private void draw() {
+    protected void draw() {
         for(int i = 0; i < Config.GAME_WIDTH; i++) {
             for(int j = 0; j < Config.GAME_HEIGHT; j++) {
                 System.out.print(board[i][j]);
