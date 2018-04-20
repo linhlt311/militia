@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 abstract class Map {
     ArrayList<Hero> heros;
@@ -99,30 +101,39 @@ abstract class Map {
         return new Position(x, y);
     }
     
-    protected void randomMinion(int num) {
-        new Random().ints(0, Config.GAME_WIDTH*Config.GAME_HEIGHT)
+    protected void randomUtility(Object obj, int num) {
+        IntStream stream = new Random().ints(0, Config.GAME_WIDTH*Config.GAME_HEIGHT)
                                     .filter(number->!checkUtility(calPosition(number)))
                                     .distinct()
-                                    .limit(num)
-                                    .forEach(number->
-                                    {
-                                        Position pos = calPosition(number);
-                                        board[pos.getX()][pos.getY()] = Symbol.MINION;
-                                        monsters.add(new Minion(pos));
-                                    });
-    }
-    
-    protected void randomBigMinion(int num) {
-        new Random().ints(0, Config.GAME_WIDTH*Config.GAME_HEIGHT)
-                                    .filter(number->!checkUtility(calPosition(number)))
-                                    .distinct()
-                                    .limit(num)
-                                    .forEach(number->
-                                    {
-                                        Position pos = calPosition(number);
-                                        board[pos.getX()][pos.getY()] = Symbol.BIG_MINION;
-                                        monsters.add(new BigMinion(pos));
-                                    });
+                                    .limit(num);
+        switch(obj.getClass().getSimpleName()) {
+            case "Sword":
+                stream.forEach(number->
+                              {
+                                Position pos = calPosition(number);
+                                board[pos.getX()][pos.getY()] = Symbol.SWORD;
+                                heros.add(new Sword(pos));
+                              });
+                break;
+            case "Minion":
+                stream.forEach(number->
+                              {
+                                Position pos = calPosition(number);
+                                board[pos.getX()][pos.getY()] = Symbol.MINION;
+                                monsters.add(new Minion(pos));
+                              });
+                break;
+            case "BigMinion":
+                stream.forEach(number->
+                              {
+                                Position pos = calPosition(number);
+                                board[pos.getX()][pos.getY()] = Symbol.BIG_MINION;
+                                monsters.add(new BigMinion(pos));
+                              });
+                break;
+            default:
+                break;
+        }
     }
     
     abstract void update(Event eventType, Position pos);

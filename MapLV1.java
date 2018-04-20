@@ -23,8 +23,9 @@ public class MapLV1 extends Map {
 
     @Override
     void random() {
-        randomMinion(2);
-        randomBigMinion(1);
-    }
-    
+        Minion minion = new Minion(new Position(0, 0));
+        BigMinion big_minion = new BigMinion(new Position(0, 0));
+        randomUtility(minion, 5);
+        randomUtility(big_minion, 1);
+    }    
 }
