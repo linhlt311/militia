@@ -7,7 +7,7 @@ import java.io.IOException;
 public class HeroInterface implements ImageObserver {
 	private int x;
 	private int y;
-	private BufferedImage heroInterface;
+	private BufferedImage heroInterface1;
     public static final int HEROWIDTH = 80;
 	
 	HeroInterface(int x, int y) {
@@ -16,7 +16,7 @@ public class HeroInterface implements ImageObserver {
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-			this.heroInterface = loader.loadImage("/short_sword.png");
+			this.heroInterface1 = loader.loadImage("/short_sword.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,13 +37,9 @@ public class HeroInterface implements ImageObserver {
         public void setY(int y){
             this.y = y;
         }
-	
-	public BufferedImage getBracketSprite() {
-		return heroInterface;
-	}
         
-    public void drawHero(Graphics g) {
-        g.drawImage(heroInterface, (this.x+2)*HEROWIDTH, this.y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
+    public void drawHero(Graphics g, int x, int y) {
+        g.drawImage(heroInterface1, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
 	}
         
         @Override

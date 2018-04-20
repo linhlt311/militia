@@ -108,9 +108,9 @@ public class Game extends Canvas implements Runnable {
             grid.draw(g);
             menuButton.drawMenuInGame(g);                  
 //          draw monster and hero
-            for(int i=0; i<heroInterfaces.size(); i++) {
-            	heroInterfaces.get(0).drawHero(g);
-            }
+//            for(int i=0; i<heroInterfaces.size(); i++) {
+//            	heroInterfaces.get(0).drawHero(g,);
+//            }
 //          heroInterface.drawHero(g);
 ////////////////////////
             if(bracketboo){
@@ -142,20 +142,26 @@ public class Game extends Canvas implements Runnable {
             // override only those which interests us
 			@Override //I override only one method for presentation
 			public void mousePressed(MouseEvent e) {
-                            if (State == STATE.GAME) {
+                if (State == STATE.GAME) {
 				int x = (int)(e.getX()/80) - 2;
 				int y = (int)(e.getY()/80);
-                                if (1<=x && 8>=x && 1<=y && 8>=y)
-                                {
-                                    bracketboo = true;
-                                    System.out.println(x + "," + y);
-                                    game.bracket.setX(x);
-                                    game.bracket.setY(y);
-                                }
-                                else {
-                                    bracketboo = false;
-                                }
-                            }
+				/// On click get position
+				
+				Hero hero = game.board.getHero(x-1,y-1);
+				System.out.println(hero);
+				
+				////////////
+                    if (1<=x && 8>=x && 1<=y && 8>=y)
+                    {
+                    	bracketboo = true;
+                        System.out.println(x + "," + y);
+                        game.bracket.setX(x);
+                        game.bracket.setY(y);
+                     }
+                     else {
+                        bracketboo = false;
+                     }
+                }
 			}
 		});
 		frame.pack();
