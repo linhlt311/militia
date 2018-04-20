@@ -32,12 +32,20 @@ public class Game extends Canvas implements Runnable {
     public static enum STATE{
         MENU,
         GAME
-    }     
+    }
     public static STATE State = STATE.MENU;
+    public static enum PLAYSTATE {
+    	PENDING,
+    	MOVING,
+    	ATTACKING,
+    	MONSTER
+    }
+    public static PLAYSTATE Playstate = PLAYSTATE.PENDING;
     public static MenuButton menuButton;
     public Board board;
-    public static ArrayList<HeroInterface> heroInterfaces = new ArrayList <HeroInterface> ();
-
+    public static HeroInterface heroInterface;
+    private Hero activeHero;
+    
 	public void init() {
 		grid = new TileGrid(ROWS, LINES);
         this.addMouseListener(new MouseInput());
@@ -45,10 +53,7 @@ public class Game extends Canvas implements Runnable {
         menuBg = new MenuBackground();
         board = new Board(ROWS, LINES);
         board.random(1, 1);
-        heroInterfaces.clear();
-        for(Hero hero: board.heros) {
-        	heroInterfaces.add(new HeroInterface(hero.curPosition.getX()+1, hero.curPosition.getY()+1));
-        }
+        heroInterface = new HeroInterface();
 	}
 	
 	private synchronized void start() {
@@ -108,11 +113,17 @@ public class Game extends Canvas implements Runnable {
             grid.draw(g);
             menuButton.drawMenuInGame(g);                  
 //          draw monster and hero
-//            for(int i=0; i<heroInterfaces.size(); i++) {
-//            	heroInterfaces.get(0).drawHero(g,);
-//            }
-//          heroInterface.drawHero(g);
-////////////////////////
+            
+            if (this.activeHero != null) {
+            	if (Game.Playstate == PLAYSTATE.MOVING) {
+                	heroInterface.drawMoveArea(g, activeHero.moveArea);
+                }
+            }
+            
+            for(Hero hero: board.heros)
+ 	           Game.heroInterface.drawHero(g, hero.curPosition.getX()+1, hero.curPosition.getY()+1);
+         
+            ////////////////////////
             if(bracketboo){
             	bracket.draw(g);
             }
@@ -147,14 +158,21 @@ public class Game extends Canvas implements Runnable {
 				int y = (int)(e.getY()/80);
 				/// On click get position
 				
-				Hero hero = game.board.getHero(x-1,y-1);
-				System.out.println(hero);
+				game.activeHero = game.board.getHero(x-1,y-1);
+				if (Game.Playstate == PLAYSTATE.PENDING) {
+					if (game.activeHero != null) {
+						Game.Playstate = PLAYSTATE.MOVING;
+						System.out.println((game.activeHero.getMoveArea().get(0).getX()+1) + "," + (game.activeHero.getMoveArea().get(0).getY()+1));
+						}
+					}
 				
 				////////////
-                    if (1<=x && 8>=x && 1<=y && 8>=y)
+				
+				//Get click position (not important)
+                	if (1<=x && 8>=x && 1<=y && 8>=y)
                     {
                     	bracketboo = true;
-                        System.out.println(x + "," + y);
+//                        System.out.println(x + "," + y);
                         game.bracket.setX(x);
                         game.bracket.setY(y);
                      }
