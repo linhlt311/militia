@@ -108,7 +108,7 @@ public class Board {
         System.out.println("x");
         
         Board board = new Board(8, 8);
-        board.random(0, 1);
+        board.random(1, 1);
         board.draw();
         
         int x;

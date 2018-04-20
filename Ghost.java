@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Ghost extends Monster{
 	private int cloak;
@@ -10,26 +11,30 @@ public class Ghost extends Monster{
 		cloak = 1;
 	}
 	@Override
-	void calculateMoveArea() {
+	void calculateMoveArea(ArrayList<Monster> monsters) {
 		moveArea.clear();
 		Position tmp = new Position(curPosition.getX()+2,curPosition.getY()+2);
-		if (tmp.getX() <= 7 && tmp.getY() <= 7) this.moveArea.add(tmp);
+		if (tmp.getX() <= Config.GAME_WIDTH && tmp.getY() <= Config.GAME_HEIGHT) this.moveArea.add(tmp);
 		tmp = new Position(curPosition.getX(),curPosition.getY());
 		this.moveArea.add(tmp);
 		tmp = new Position(curPosition.getX()+2,curPosition.getY()-2);
-		if (tmp.getX() <= 7 && tmp.getY() >= 0) this.moveArea.add(tmp);
+		if (tmp.getX() <= Config.GAME_WIDTH && tmp.getY() >= 0) this.moveArea.add(tmp);
 		tmp = new Position(curPosition.getX()-2,curPosition.getY()+2);
-		if (tmp.getX() >= 0 && tmp.getY() <= 7) this.moveArea.add(tmp);
+		if (tmp.getX() >= 0 && tmp.getY() <= Config.GAME_HEIGHT) this.moveArea.add(tmp);
 		tmp = new Position(curPosition.getX()-2,curPosition.getY()-2);
 		if (tmp.getX() >= 0 && tmp.getY() >= 0) this.moveArea.add(tmp);		
 	}
 
 	@Override
-	boolean move() {
-		calculateMoveArea();
-		int tmp = (int)(Math.random() * this.moveArea.size());
-		curPosition = this.moveArea.get(tmp);
-		setCloak();
+	public boolean move(Position pos, ArrayList<Monster> mons) {
+		calculateMoveArea(mons);
+		Position min = curPosition;
+		for (Position position: moveArea) {
+			if (min.getDistance(pos) > position.getDistance(pos)) {
+				min = position;
+			}
+		}
+		curPosition = min;
 		return true;
 	}
 	
