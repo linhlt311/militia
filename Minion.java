@@ -6,7 +6,7 @@ public class Minion extends Monster {
 	}
 
 	@Override
-	public void calculateMoveArea() {
+	public void calculateMoveArea(ArrayList<Monster> pos) {
 		moveArea.clear();
 		Position tmp = new Position(curPosition.getX()+1,curPosition.getY());
 		if (tmp.getX() <= 7) this.moveArea.add(tmp);
@@ -20,11 +20,20 @@ public class Minion extends Monster {
 		if (tmp.getY() >= 0) this.moveArea.add(tmp);
 	}
 	
+	private int getDistance(Position pos1, Position pos2) {
+		return Math.abs(pos2.getX() - pos1.getX()) + Math.abs(pos2.getY() - pos1.getY());
+	}
+	
 	@Override
-	public boolean move() {
-		calculateMoveArea();
-		int tmp = (int)(Math.random() * this.moveArea.size());
-		curPosition = this.moveArea.get(tmp);
+	public boolean move(Position pos, ArrayList<Monster> mons) {
+		calculateMoveArea(mons);
+		Position min = curPosition;
+		for (Position position: moveArea) {
+			if (getDistance(min,pos) > getDistance(position,pos)) {
+				min = position;
+			}
+		}
+		curPosition = min;
 		return true;
 	}
 	

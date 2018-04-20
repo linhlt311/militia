@@ -25,7 +25,7 @@ public class Ghost extends Monster{
 	}
 
 	@Override
-	boolean move() {
+	boolean move(Position pos) {
 		calculateMoveArea();
 		int tmp = (int)(Math.random() * this.moveArea.size());
 		curPosition = this.moveArea.get(tmp);
