@@ -4,17 +4,13 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 public class Background extends DrawInterface implements ImageObserver {
-    Background(){
-        BufferedImageLoader loader = new BufferedImageLoader();
-	try {
-            this.image = loader.loadImage("/game-background.png");
-	} catch (IOException e) {
-            e.printStackTrace();
-	}
+
+    public Background() {
+        super(0, 0, "/game-background.png");
     }
 
     @Override
-    void draw(Graphics g) {
+    public void draw(Graphics g) {
          g.drawImage(image, 0, 0, Game.WIDTH*Game.SCALE+200, Game.HEIGHT*Game.SCALE, this);
     }
 

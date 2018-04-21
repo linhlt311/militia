@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class HeroInterface implements ImageObserver {
 	private BufferedImage heroInterface1;
 	private BufferedImage moveInterface;
-    public static final int HEROWIDTH = 80;
+        public static final int HEROWIDTH = 80;
 	
 	HeroInterface() {		
 		BufferedImageLoader loader = new BufferedImageLoader();

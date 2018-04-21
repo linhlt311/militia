@@ -16,6 +16,8 @@ public class MapLV1 extends Map {
         
         board[6][4] = Symbol.SPEAR;
         heros.add(new Spear(new Position(6, 4)));
+        
+        random();
     }
     
     @Override
@@ -35,8 +37,8 @@ public class MapLV1 extends Map {
 	        	Minion m1 = new Minion(pos);
 	            if (monsters.contains(m1)) monsters.remove(m1);	            
 	            break;
-	        case HERO_ATTACK:
-	            for (Position position: calDamagePosition(pos)) {
+	        case HERO_ATTACK:	  
+	            for (Position position: ((Hero) obj).calDamageArea(pos)) {
 	            	removeMonster(position);
 	            }
 	            break;
