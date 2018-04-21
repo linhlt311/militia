@@ -17,12 +17,9 @@ abstract class Map {
     }
     
     enum Event {
-        SWORD_MOVE,
-        SWORD_ATTACK,
-        SPEAR_MOVE,
-        SPEAR_ATTACK,
-        MINION_MOVE,
-        BIG_MINION_MOVE
+    	HERO_MOVE,
+        HERO_ATTACK,
+        MONSTER_MOVE,
     }
     
     Map() {
@@ -138,7 +135,25 @@ abstract class Map {
                 break;
         }
     }
-    
+
+    protected void removeMonster(Position pos) {
+    	Minion m2 = new Minion(pos);
+        if (monsters.contains(m2)) {
+            monsters.remove(m2);
+            board[pos.getX()][pos.getY()] = Symbol.DEFAULT;
+        }
+        BigMinion bm2 = new BigMinion(pos);
+        if (monsters.contains(bm2)) {
+            int shield = bm2.getShield();
+            if (shield == 0) {
+            	monsters.remove(bm2);
+            	board[pos.getX()][pos.getY()] = Symbol.DEFAULT;
+            } else {
+            	bm2.lowerShield();
+            }                
+        }
+    }
+  
     public void setUnselectState() {
         for(Hero hero: heros)
             hero.setState(Hero.State.UNSELECT);
@@ -149,6 +164,6 @@ abstract class Map {
                 return false;
         return true;
     }
-    abstract void update(Event eventType, Position pos);
+    abstract void update(Object obj, Event eventType, Position pos);
     abstract void random();
 }
