@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Sword extends Hero {
     public Sword(Position pos) {
         super(pos);
@@ -52,5 +55,14 @@ public class Sword extends Hero {
             }
         }
         return false;
+    }
+
+    @Override
+    ArrayList<Position> calDamageArea(Position pos) {
+        ArrayList<Position> damageArea = new ArrayList<Position>();
+        
+        damageArea.add(pos);
+        
+        return damageArea;
     }
 }

@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Spear extends Hero {
     public Spear(Position pos) {
         super(pos);
@@ -53,6 +56,22 @@ public class Spear extends Hero {
             }
         }
         return false;
+    }
+
+    @Override
+    ArrayList<Position> calDamageArea(Position pos) {
+        ArrayList<Position> damageArea = new ArrayList<Position>();
+        
+        damageArea.add(pos);
+        
+        int x = curPosition.getX(), y = curPosition.getY();
+        int sub_x = pos.getX() - x, sub_y = pos.getY() - y;
+        sub_x = (sub_x % 2 == 0) ? sub_x/2 : sub_x*2;
+        sub_y = (sub_y % 2 == 0) ? sub_y/2 : sub_y*2;
+        
+        damageArea.add(new Position(x + sub_x, y + sub_y));
+        
+        return damageArea;
     }
 }
 

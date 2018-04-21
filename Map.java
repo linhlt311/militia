@@ -17,9 +17,12 @@ abstract class Map {
     }
     
     enum Event {
-        HERO_MOVE,
-        HERO_ATTACK,
-        MONSTER_MOVE
+        SWORD_MOVE,
+        SWORD_ATTACK,
+        SPEAR_MOVE,
+        SPEAR_ATTACK,
+        MINION_MOVE,
+        BIG_MINION_MOVE
     }
     
     Map() {
@@ -136,6 +139,16 @@ abstract class Map {
         }
     }
     
+    public void setUnselectState() {
+        for(Hero hero: heros)
+            hero.setState(Hero.State.UNSELECT);
+    }
+    public boolean checkEndTurn() {
+        for(Hero hero: heros)
+            if(hero.getState() != Hero.State.DONE)
+                return false;
+        return true;
+    }
     abstract void update(Event eventType, Position pos);
     abstract void random();
 }

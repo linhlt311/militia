@@ -7,7 +7,7 @@ public class Minion extends Monster {
 	}
 
 	@Override
-	public void calculateMoveArea(ArrayList<Monster> monsters) {
+	public void calMoveArea(ArrayList<Monster> monsters) {
 		moveArea.clear();
 		Position tmp = new Position(curPosition.getX()+1,curPosition.getY());
 		if (tmp.getX() < Config.GAME_WIDTH) this.moveArea.add(tmp);
@@ -27,7 +27,7 @@ public class Minion extends Monster {
 	
 	@Override
 	public boolean move(Position pos, ArrayList<Monster> mons) {
-		calculateMoveArea(mons);
+		calMoveArea(mons);
 		Position min = curPosition;
 		for (Position position: moveArea) {
 			if (min.getDistance(pos) > position.getDistance(pos)) {

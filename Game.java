@@ -1,4 +1,3 @@
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
-	
-	//Variables
     private static final long serialVersionUID = 1L;
     public static final int WIDTH = 600;
     public static final int HEIGHT = WIDTH / 12 * 9;
@@ -28,7 +25,7 @@ public class Game extends Canvas implements Runnable {
     private TileGrid grid;
     private Background bg = new Background();
     private MenuBackground menuBg;
-    private Bracket bracket = new Bracket(0,0);
+    private Bracket bracket = new Bracket(0, 0);
     public static enum STATE{
         MENU,
         GAME
@@ -47,14 +44,14 @@ public class Game extends Canvas implements Runnable {
     private Hero activeHero;
     
 	public void init() {
-		grid = new TileGrid(ROWS, LINES);
-        this.addMouseListener(new MouseInput());
-        menuButton = new MenuButton();
-        menuBg = new MenuBackground();
-        board = new Board(ROWS, LINES);
-        board.random(1, 1);
-        heroInterface = new HeroInterface();
-        Playstate = PLAYSTATE.PENDING;
+            grid = new TileGrid(ROWS, LINES);
+            this.addMouseListener(new MouseInput());
+            menuButton = new MenuButton();
+            menuBg = new MenuBackground();
+            board = new Board(ROWS, LINES);
+            board.random(1, 1);
+            heroInterface = new HeroInterface();
+            Playstate = PLAYSTATE.PENDING;
 	}
 	
 	private synchronized void start() {
