@@ -155,21 +155,21 @@ public class Game extends Canvas implements Runnable {
 			@Override //I override only one method for presentation
 			public void mousePressed(MouseEvent e) {
                 if (State == STATE.GAME) {
-				int x = (int)(e.getX()/80) - 2;
-				int y = (int)(e.getY()/80);
-				/// On click get position
+                	int x = (int)(e.getX()/80) - 2;
+                	int y = (int)(e.getY()/80);
+                	/// On click get position
 				
-				game.activeHero = game.board.getHero(x-1,y-1);
-				if (Game.Playstate == PLAYSTATE.PENDING) {
-					if (game.activeHero != null) {
-						Game.Playstate = PLAYSTATE.MOVING;
-						System.out.println((game.activeHero.getMoveArea().get(0).getX()+1) + "," + (game.activeHero.getMoveArea().get(0).getY()+1));
+                	game.activeHero = game.board.getHero(x-1,y-1);
+                	if (Game.Playstate == PLAYSTATE.PENDING) {
+                		if (game.activeHero != null) {
+                			Game.Playstate = PLAYSTATE.MOVING;
+                			System.out.println((game.activeHero.getMoveArea().get(0).getX()+1) + "," + (game.activeHero.getMoveArea().get(0).getY()+1));
+							}
 						}
-					}
 				
-				////////////
+                	////////////
 				
-				//Get click position (not important)
+                	//Get click position (not important)
                 	if (1<=x && 8>=x && 1<=y && 8>=y)
                     {
                     	bracketboo = true;
