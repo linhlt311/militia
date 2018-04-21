@@ -34,7 +34,7 @@ public class HeroInterface implements ImageObserver {
 		}
 		
 		try {
-			this.heroSpear = loader.loadImage("/monster1.png");
+			this.heroSpear = loader.loadImage("/spear3.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
