@@ -37,7 +37,8 @@ public class TileGrid extends DrawInterface implements ImageObserver {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void draw(Graphics g) {
+    @Override
+    public void draw(Graphics g) {
         for(int i = 0; i < total; i++) {
             this.image = tiles[i].getSprite();
             g.drawImage(image, tiles[i].getX()*TILEWIDTH, tiles[i].getY()*TILEWIDTH, TILEWIDTH, TILEWIDTH, this);

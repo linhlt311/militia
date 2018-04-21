@@ -22,9 +22,11 @@ public class Arrow extends Hero {
         int y = curPosition.getY();
         attackArea.clear();
         Position tmp;
-        for(int i = 0; i <= 7; i++) {
+        for(int i = 0; i < Config.GAME_WIDTH; i++) {
             tmp = new Position(i, y);
             attackArea.add(tmp);
+        }
+        for(int i = 0; i < Config.GAME_HEIGHT; i++) {
             tmp = new Position(x, i);
             attackArea.add(tmp);
         }

@@ -1,8 +1,6 @@
 import java.awt.Image;
 
 public class Bracket extends DrawInterface{
-    public static final int BRACKETWIDTH = 80;
-
     public Bracket(int x, int y) {
         super(x, y, "/bracket.png");
     }

@@ -9,7 +9,8 @@ public class Background extends DrawInterface implements ImageObserver {
         super(x, y, "/game-background.png");
     }
 
-    void draw(Graphics g) {
+    @Override
+    public void draw(Graphics g) {
          g.drawImage(image, 0, 0, Game.WIDTH*Game.SCALE+200, Game.HEIGHT*Game.SCALE, this);
     }
 

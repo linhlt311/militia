@@ -4,8 +4,8 @@ import java.awt.image.ImageObserver;
 
 public class MenuBackground extends DrawInterface implements ImageObserver {
 
-    public MenuBackground(int x, int y) {
-        super(x, y, "/menu-background1.png");
+    public MenuBackground() {
+        super(0, 0, "/menu-background1.png");
     }
 
     public void draw(Graphics g) {
