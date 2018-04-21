@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Arrow extends Hero {
     public Arrow(Position pos) {
         super(pos);
@@ -56,6 +59,15 @@ public class Arrow extends Hero {
             }
         }
         return false;
+    }
+
+    @Override
+    ArrayList<Position> calDamageArea(Position pos) {
+        ArrayList<Position> damageArea = new ArrayList<Position>();
+        
+        damageArea.add(pos);
+        
+        return damageArea;
     }
 }
 

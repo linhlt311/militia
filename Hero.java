@@ -60,4 +60,5 @@ abstract class Hero {
     abstract void calAttackArea();
     abstract boolean move(Position pos);
     abstract boolean attack(Position pos);
+    abstract ArrayList<Position> calDamageArea(Position pos);
 }
