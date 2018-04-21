@@ -19,6 +19,6 @@ public abstract class Monster {
             return curPosition.equals(((Monster) obj).curPosition);
         return false;
     }
-	abstract void calculateMoveArea(ArrayList<Monster> pos);
+	abstract void calMoveArea(ArrayList<Monster> pos);
 	abstract boolean move(Position pos, ArrayList<Monster> mons);
 }

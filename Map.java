@@ -17,9 +17,12 @@ abstract class Map {
     }
     
     enum Event {
-        HERO_MOVE,
-        HERO_ATTACK,
-        MONSTER_MOVE
+        SWORD_MOVE,
+        SWORD_ATTACK,
+        SPEAR_MOVE,
+        SPEAR_ATTACK,
+        MINION_MOVE,
+        BIG_MINION_MOVE
     }
     
     Map() {
