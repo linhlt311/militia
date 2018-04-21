@@ -139,6 +139,16 @@ abstract class Map {
         }
     }
     
+    public void setUnselectState() {
+        for(Hero hero: heros)
+            hero.setState(Hero.State.UNSELECT);
+    }
+    public boolean checkEndTurn() {
+        for(Hero hero: heros)
+            if(hero.getState() != Hero.State.DONE)
+                return false;
+        return true;
+    }
     abstract void update(Event eventType, Position pos);
     abstract void random();
 }

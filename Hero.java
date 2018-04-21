@@ -4,12 +4,26 @@ abstract class Hero {
     protected Position curPosition;
     protected ArrayList<Position> moveArea;
     protected ArrayList<Position> attackArea;
+    private State state;
+    
+    public enum State {
+        UNSELECT,
+        SELECTING,
+        MOVING,
+        MOVED,
+        ATTACKING,
+        DONE
+    }
     
     Hero(Position pos) {
         curPosition = new Position(pos.getX(), pos.getY());
         moveArea = new ArrayList<Position> ();
         attackArea = new ArrayList<Position> ();
+        state = State.UNSELECT;
     }
+    
+    public void setState(State state) { this.state = state; }
+    public State getState() { return state; }
     
     void getDetail() {
         calMoveArea();
