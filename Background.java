@@ -5,8 +5,8 @@ import java.io.IOException;
 
 public class Background extends DrawInterface implements ImageObserver {
 
-    public Background(int x, int y) {
-        super(x, y, "/game-background.png");
+    public Background() {
+        super(0, 0, "/game-background.png");
     }
 
     @Override

@@ -8,6 +8,7 @@ public class MenuBackground extends DrawInterface implements ImageObserver {
         super(0, 0, "/menu-background1.png");
     }
 
+    @Override
     public void draw(Graphics g) {
         g.drawImage(image, 0, 0, Game.WIDTH*Game.SCALE+200, Game.HEIGHT*Game.SCALE, this);
     }

@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
 
     private TileGrid grid;
-    private Background bg = new Background(0, 0);
+    private Background bg = new Background();
     private MenuBackground menuBg;
     private Bracket bracket = new Bracket(0, 0);
     public static enum STATE{
