@@ -1,4 +1,3 @@
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,8 +8,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
-	
 	//Variables
+    public static final int BRACKETWIDTH = 80;
     private static final long serialVersionUID = 1L;
     public static final int WIDTH = 600;
     public static final int HEIGHT = WIDTH / 12 * 9;
@@ -24,9 +23,9 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
 
     private TileGrid grid;
-    private Background bg = new Background();
+    private Background bg = new Background(0, 0);
     private MenuBackground menuBg;
-    private Bracket bracket = new Bracket(0,0);
+    private Bracket bracket = new Bracket(0, 0);
     public static enum STATE{
         MENU,
         GAME
@@ -38,7 +37,7 @@ public class Game extends Canvas implements Runnable {
             grid = new TileGrid(ROWS, LINES);
             this.addMouseListener(new MouseInput());
             menuButton = new MenuButton();
-            menuBg = new MenuBackground();
+            menuBg = new MenuBackground(0, 0);
 	}
 	
 	private synchronized void start() {
@@ -98,7 +97,7 @@ public class Game extends Canvas implements Runnable {
                     grid.draw(g);
                     menuButton.drawMenuInGame(g);
                     if(bracketboo){
-                        bracket.draw(g);
+                        bracket.draw(g, BRACKETWIDTH);
                     }
                 }
                 else if(State == STATE.MENU){
