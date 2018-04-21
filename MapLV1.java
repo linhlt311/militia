@@ -16,6 +16,8 @@ public class MapLV1 extends Map {
         
         board[6][4] = Symbol.SPEAR;
         heros.add(new Spear(new Position(6, 4)));
+        
+        random();
     }
     
     @Override
