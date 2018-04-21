@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HeroInterface implements ImageObserver {
-	private BufferedImage heroInterface1;
+	private BufferedImage heroSword;
+	private BufferedImage heroSpear;
 	private BufferedImage moveInterface;
+	private BufferedImage attackInterface;
         public static final int HEROWIDTH = 80;
 	
 	HeroInterface() {		
@@ -20,19 +22,41 @@ public class HeroInterface implements ImageObserver {
 		}
 		
 		try {
-			this.heroInterface1 = loader.loadImage("/short_sword.png");
+			this.attackInterface = loader.loadImage("/tile2.png");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.heroSword = loader.loadImage("/short_sword.png");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			this.heroSpear = loader.loadImage("/monster1.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
         
-    public void drawHero(Graphics g, int x, int y) {
-        g.drawImage(heroInterface1, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
+    public void drawHero(Graphics g, int x, int y, String name) {
+    	if (name == "Sword") {
+            g.drawImage(heroSword, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
+    	} else if (name == "Spear") {
+            g.drawImage(heroSpear, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
+    	}
 	}
     
     public void drawMoveArea(Graphics g, ArrayList<Position> positions) {
     	for(Position pos: positions) {
     		g.drawImage(moveInterface, (pos.getX()+3)*HEROWIDTH, (pos.getY()+1)*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
+    	}
+    }
+    
+    public void drawAttackArea(Graphics g, ArrayList<Position> positions) {
+    	for(Position pos: positions) {
+    		g.drawImage(attackInterface, (pos.getX()+3)*HEROWIDTH, (pos.getY()+1)*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
     	}
     }
          
