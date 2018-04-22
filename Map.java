@@ -85,7 +85,7 @@ abstract class Map {
     
     private boolean checkMonster(Position pos) {
         for(Monster monster: monsters) {
-            if(monster.curPosition.equals(pos))
+            if(monster.getCurrentPosition().equals(pos))
                 return true;
         }
         return false;
