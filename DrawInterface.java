@@ -17,6 +17,7 @@ public abstract class DrawInterface  implements ImageObserver  {
 	BufferedImageLoader loader = new BufferedImageLoader();
 	try {
             this.image = loader.loadImage(imageLink);
+            System.out.println("Call");
 	} catch (IOException e) {
             e.printStackTrace();
 	}
