@@ -46,7 +46,7 @@ public class HeroInterface implements ImageObserver {
     	} else if (name == "Spear") {
             g.drawImage(heroSpear, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
     	}
-	}
+}
     
     public void drawMoveArea(Graphics g, ArrayList<Position> positions) {
     	for(Position pos: positions) {
