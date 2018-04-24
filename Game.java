@@ -177,6 +177,11 @@ public class Game extends Canvas implements Runnable {
 //                    		/////
                     		if (game.activeHero.getState() == Hero.State.MOVED) {
                     			System.out.println("MOVED STATE. Ready to attack");
+                    			if (game.activeHero.attack(new Position(x-1, y-1))) {
+                    				game.maplv1.update(game.activeHero, Map.Event.HERO_ATTACK, new Position(x-1,y-1));
+                        			System.out.println("ATTACKED");
+                        			game.activeHero.setState(Hero.State.DONE);
+                    			}
                     		} else if (game.activeHero.getState() == Hero.State.UNSELECT) {
                     			System.out.println("UNSELECT STATE");
                     			game.activeHero.setState(Hero.State.SELECTING);
