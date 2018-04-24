@@ -1,7 +1,11 @@
 
 import java.util.ArrayList;
 
+
 public class Sword extends Hero {
+	
+	private String imageLink = "/shot-sword.png";
+	
     public Sword(Position pos) {
         super(pos);
     }

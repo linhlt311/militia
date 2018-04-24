@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 
 public class Spear extends Hero {
+		
     public Spear(Position pos) {
         super(pos);
     }

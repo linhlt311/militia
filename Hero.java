@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 abstract class Hero {
@@ -5,6 +6,7 @@ abstract class Hero {
     protected ArrayList<Position> moveArea;
     protected ArrayList<Position> attackArea;
     private State state;
+    protected DrawTile heroImage;
     
     public enum State {
         UNSELECT,
