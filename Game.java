@@ -34,11 +34,8 @@ public class Game extends Canvas implements Runnable {
     public static PLAYSTATE Playstate = PLAYSTATE.HERO;
     public static MenuButton menuButton;
     public MapLV1 maplv1;
-    public static HeroInterface heroInterface;
     private Hero activeHero;
     private HeroAction heroAction;
-    private MonsterInterface monsinter;
-    private Monster activeMons;
     
     public void init() {
         grid = new TileGrid(ROWS, LINES);
@@ -46,11 +43,9 @@ public class Game extends Canvas implements Runnable {
         menuButton = new MenuButton();
         menuBg = new MenuBackground();
         maplv1 = new MapLV1();
-        heroInterface = new HeroInterface();
         heroAction = new HeroAction();
         Playstate = PLAYSTATE.HERO;
         activeHero = null; 
-        monsinter = new MonsterInterface();
         bracket = new DrawTile("/bracket.png");
     }
 	
@@ -114,7 +109,7 @@ public class Game extends Canvas implements Runnable {
             
             //End hero action            
             for(Hero hero: maplv1.heros) {
-  	        Game.heroInterface.drawHero(g, hero.curPosition.getX()+1, hero.curPosition.getY()+1, hero.getClass().getSimpleName());
+            	hero.draw(g);
             }
          
             //Monster action
@@ -133,7 +128,6 @@ public class Game extends Canvas implements Runnable {
                     mons.move(a, maplv1.monsters);
                     maplv1.update(mons, Map.Event.MONSTER_MOVE, mons.curPosition);
                     System.out.println(mons.getClass().getSimpleName() + " " + mons.curPosition);
-                    monsinter.drawMons(g, mons.curPosition.getX()+1, mons.curPosition.getY()+1, mons.getClass().getSimpleName());                  
                 }
                 System.out.println("Position change");
                 Game.Playstate = PLAYSTATE.HERO; 
@@ -143,7 +137,7 @@ public class Game extends Canvas implements Runnable {
             //End monster action
         
             for (Monster mons: maplv1.monsters){
-                monsinter.drawMons(g, mons.curPosition.getX()+1, mons.curPosition.getY()+1, mons.getClass().getSimpleName());
+            	mons.draw(g);
             }
             ////////////////////////
             if(bracketboo){

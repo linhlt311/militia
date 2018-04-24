@@ -2,10 +2,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
 
-public class MenuBackground extends DrawInterface implements ImageObserver {
+public class MenuBackground extends DrawTile implements ImageObserver {
 
     public MenuBackground() {
-        super(0, 0, "/menu-background1.png");
+        super("/menu-background1.png");
     }
 
     @Override
