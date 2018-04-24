@@ -25,5 +25,5 @@ public abstract class Monster {
         return false;
     }
 	abstract void calMoveArea(ArrayList<Monster> pos);
-	abstract boolean move(Position pos, ArrayList<Monster> mons);
+	abstract boolean move(ArrayList<Hero> heros, ArrayList<Monster> mons);
 }
