@@ -46,5 +46,4 @@ public abstract class DrawInterface  implements ImageObserver  {
     public void draw(Graphics g){
         g.drawImage(image, (this.x+2)*WIDTH, this.y*WIDTH, WIDTH, WIDTH, (ImageObserver) this);
     };
-
 }

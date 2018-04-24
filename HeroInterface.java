@@ -12,7 +12,7 @@ public class HeroInterface implements ImageObserver {
 	private BufferedImage attackInterface;
         public static final int HEROWIDTH = 80;
 	
-	HeroInterface() {		
+	HeroInterface() {	               
 		BufferedImageLoader loader = new BufferedImageLoader();
 		
 		try {
@@ -46,7 +46,7 @@ public class HeroInterface implements ImageObserver {
     	} else if (name == "Spear") {
             g.drawImage(heroSpear, (x+2)*HEROWIDTH, y*HEROWIDTH, HEROWIDTH, HEROWIDTH, (ImageObserver) this);
     	}
-	}
+}
     
     public void drawMoveArea(Graphics g, ArrayList<Position> positions) {
     	for(Position pos: positions) {
@@ -60,9 +60,9 @@ public class HeroInterface implements ImageObserver {
     	}
     }
          
-        @Override
-        public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+	// TODO Auto-generated method stub
+	return false;
+    }
 }

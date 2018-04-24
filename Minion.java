@@ -46,5 +46,6 @@ public class Minion extends Monster {
 		setCurPosition(min2);
 		return true;
 	}
+
 	
 }

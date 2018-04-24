@@ -45,4 +45,5 @@ public class BigMinion extends Monster{
 		setCurPosition(min);
 		return true;
 	}
+
 }
