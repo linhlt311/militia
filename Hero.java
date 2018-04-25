@@ -3,15 +3,57 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 abstract class Hero {
-    protected Position curPosition;
-    protected ArrayList<Position> moveArea;
-    protected ArrayList<Position> attackArea;
+    private Position curPosition;
+    private ArrayList<Position> moveArea;
+    private ArrayList<Position> attackArea;
     private State state;
-    protected DrawTile heroImage;
-    protected DrawTile moveAreaTile;
-    protected DrawTile attackAreaTile;
+    private DrawTile heroImage;
+    private DrawTile moveAreaTile;
+    private DrawTile attackAreaTile;
     
-    public enum State {
+    //Getter and setter
+    public Position getCurPosition() {
+		return curPosition;
+	}
+
+	public void setCurPosition(Position curPosition) {
+		this.curPosition = curPosition;
+	}
+
+	public DrawTile getHeroImage() {
+		return heroImage;
+	}
+
+	public void setHeroImage(DrawTile heroImage) {
+		this.heroImage = heroImage;
+	}
+
+	public DrawTile getMoveAreaTile() {
+		return moveAreaTile;
+	}
+
+	public void setMoveAreaTile(DrawTile moveAreaTile) {
+		this.moveAreaTile = moveAreaTile;
+	}
+
+	public DrawTile getAttackAreaTile() {
+		return attackAreaTile;
+	}
+
+	public void setAttackAreaTile(DrawTile attackAreaTile) {
+		this.attackAreaTile = attackAreaTile;
+	}
+
+	public void setMoveArea(ArrayList<Position> moveArea) {
+		this.moveArea = moveArea;
+	}
+
+	public void setAttackArea(ArrayList<Position> attackArea) {
+		this.attackArea = attackArea;
+	}
+	
+	//
+	public enum State {
         UNSELECT,
         SELECTING,
         MOVING,

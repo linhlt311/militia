@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Minion extends Monster {
 	Minion(Position pos) {
 		super(pos);
-		this.monsterImage = new DrawTile("/monster2.png");
+		this.setMonsterImage(new DrawTile("/monster2.png"));
 	}
 
 	@Override
@@ -31,9 +31,9 @@ public class Minion extends Monster {
 	public boolean move(ArrayList<Hero> heros, ArrayList<Monster> mons) {
 		calMoveArea(mons);
 		Position monPos = getCurPosition();
-		Position min = heros.get(0).curPosition;
+		Position min = heros.get(0).getCurPosition();
 		for (Hero hero: heros) {
-			Position heroPos = hero.curPosition;
+			Position heroPos = hero.getCurPosition();
 			if (min.getDistance(monPos) > heroPos.getDistance(monPos)) {
 				min = heroPos;
 			}

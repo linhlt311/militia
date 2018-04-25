@@ -31,15 +31,23 @@ public class Ghost extends Monster{
 	}
 
 	@Override
-	public boolean move(Position pos, ArrayList<Monster> mons) {
+	public boolean move(ArrayList<Hero> heros, ArrayList<Monster> mons) {
 		calMoveArea(mons);
-		Position min = getCurPosition();
-		for (Position position: getMoveArea()) {
-			if (min.getDistance(pos) > position.getDistance(pos)) {
-				min = position;
+		Position monPos = getCurPosition();
+		Position min = heros.get(0).getCurPosition();
+		for (Hero hero: heros) {
+			Position heroPos = hero.getCurPosition();
+			if (min.getDistance(monPos) > heroPos.getDistance(monPos)) {
+				min = heroPos;
 			}
 		}
-		setCurPosition(min);
+		Position min2 = getCurPosition();
+		for (Position position: getMoveArea()) {
+			if (min2.getDistance(min) > position.getDistance(min)) {
+				min2 = position;
+			}
+		}
+		setCurPosition(min2);
 		return true;
 	}
 	

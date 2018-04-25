@@ -2,12 +2,19 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public abstract class Monster {
-	protected Position curPosition;
-	protected ArrayList<Position> moveArea;
-	protected ArrayList<Position> attackArea;
-	protected DrawTile monsterImage;
-	public Position getCurrentPosition() {
+	private Position curPosition;
+	private ArrayList<Position> moveArea;
+	private DrawTile monsterImage;
+	
+	//Getter and setter
+	public Position getCurPosition() {
 		return curPosition;
+	}
+	public DrawTile getMonsterImage() {
+		return monsterImage;
+	}
+	public void setMonsterImage(DrawTile monsterImage) {
+		this.monsterImage = monsterImage;
 	}
 	public void setCurPosition(Position pos) {
 		curPosition = pos;
@@ -18,6 +25,7 @@ public abstract class Monster {
 	public void setMoveArea(ArrayList<Position> pos) {
 		moveArea = pos;
 	}
+	//
 	Monster(Position pos) {
 		curPosition = pos;
 		moveArea = new ArrayList<Position>();

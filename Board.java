@@ -86,7 +86,7 @@ public class Board {
     public Hero getHero(int x, int y) {
         Position tmp = new Position(x, y);
         for(Hero hero: heros) {
-            if (hero.curPosition.equals(tmp))
+            if (hero.getCurPosition().equals(tmp))
                     return hero;
         }
         
@@ -119,11 +119,11 @@ public class Board {
         do {
             for(Hero sword: heros) {
                 // move sword
-                board.board[sword.curPosition.getX()][sword.curPosition.getY()] = '-';
+                board.board[sword.getCurPosition().getX()][sword.getCurPosition().getY()] = '-';
                 
                 System.out.println("Move sword in" + '(' + 
-                        Integer.toString(sword.curPosition.getX()) + ',' + 
-                        sword.curPosition.getY() + ')');
+                        Integer.toString(sword.getCurPosition().getX()) + ',' + 
+                        sword.getCurPosition().getY() + ')');
                 
                 do {
                     System.out.print("Enter x: ");
@@ -142,8 +142,8 @@ public class Board {
                 
                 // sword attack
                 System.out.println("Attack by sword in" + '(' + 
-                        Integer.toString(sword.curPosition.getX()) + ',' + 
-                        sword.curPosition.getY() + ')');
+                        Integer.toString(sword.getCurPosition().getX()) + ',' + 
+                        sword.getCurPosition().getY() + ')');
                 
                 do {
                     System.out.print("Enter x: ");
@@ -162,10 +162,10 @@ public class Board {
             }
             
             for(Monster minion: monsters) {
-                board.board[minion.curPosition.getX()][minion.curPosition.getY()] = '-';
+                board.board[minion.getCurPosition().getX()][minion.getCurPosition().getY()] = '-';
 //                minion.move();
-                tmp = new Position(minion.curPosition.getX(),
-                                   minion.curPosition.getY());
+                tmp = new Position(minion.getCurPosition().getX(),
+                                   minion.getCurPosition().getY());
                 board.update(Event.MONS_MOVE, tmp);
             }
         } while(!(monsters.isEmpty() || heros.isEmpty()));

@@ -69,7 +69,7 @@ abstract class Map {
         Position pos = new Position(x, y);
         
         for(Hero hero: heros) {
-            if(hero.curPosition.equals(pos))
+            if(hero.getCurPosition().equals(pos))
                 return hero;
         }
         return null;
@@ -77,7 +77,7 @@ abstract class Map {
     
     private boolean checkHero(Position pos) {
         for(Hero hero: heros) {
-            if(hero.curPosition.equals(pos))
+            if(hero.getCurPosition().equals(pos))
                 return true;
         }
         return false;
@@ -85,7 +85,7 @@ abstract class Map {
     
     private boolean checkMonster(Position pos) {
         for(Monster monster: monsters) {
-            if(monster.getCurrentPosition().equals(pos))
+            if(monster.getCurPosition().equals(pos))
                 return true;
         }
         return false;
