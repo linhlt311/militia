@@ -10,6 +10,7 @@ public class BigMinion extends Monster{
 	}
 	BigMinion(Position pos) {
 		super(pos);
+		this.monsterImage = new DrawTile("/monster3.png");
 		shield = 1;
 	}
 

@@ -4,32 +4,12 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
-public class TileGrid extends DrawInterface implements ImageObserver {
-    private int total;
-    private Tile tiles[];
-    public static final int TILEWIDTH = 80;
-//    TileGrid(int x, int y) {
-//        this.total = x*y;
-//        int count = 0;
-//        tiles = new Tile[total];
-//        for(int i = 0; i < x ; i++){
-//            for(int j = 0; j < y; j++) {
-//                tiles[count] = new Tile(i+3, j+1);
-//                count++;
-//            }
-//        }
-//    }
+public class TileGrid implements ImageObserver {
+    private static final int TILEWIDTH = Config.TILEWIDTH;
+    private DrawTile tile;
+
     public TileGrid(int x, int y) {
-        super(x, y, "/tile1.png");
-        this.total = x*y;
-        int count = 0;
-        tiles = new Tile[total];
-        for (int i = 0; i < x; i++){
-            for(int j = 0; j < y; j++) {
-                tiles[count] = new Tile(i+3, j+1);
-                count++;
-            }
-        }
+    	tile = new DrawTile("/ground-tile.png");
     }
 
     @Override
@@ -37,11 +17,12 @@ public class TileGrid extends DrawInterface implements ImageObserver {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void draw(Graphics g) {
-        for(int i = 0; i < total; i++) {
-            this.image = tiles[i].getSprite();
-            g.drawImage(image, tiles[i].getX()*TILEWIDTH, tiles[i].getY()*TILEWIDTH, TILEWIDTH, TILEWIDTH, this);
-	}
+        for(int i = 0; i < Config.GAME_HEIGHT; i++) 
+        	for(int j = 0; j < Config.GAME_WIDTH; j++) {
+        		tile.setX(i+1);
+        		tile.setY(j+1);
+        		tile.draw(g);
+        	}
     }
 }

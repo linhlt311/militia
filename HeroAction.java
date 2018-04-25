@@ -3,7 +3,6 @@ import java.awt.Graphics;
 public class HeroAction {
 	
 	private Hero activeHero;
-	private HeroInterface heroInterface = new HeroInterface();
 	private Graphics g;
 	
 	public void update(Hero hero, Graphics g) {
@@ -14,14 +13,14 @@ public class HeroAction {
 	public void showMoveArea() {
 		if (this.activeHero != null && this.activeHero.getState() == Hero.State.SELECTING) {
 			this.activeHero.calMoveArea();
-	        heroInterface.drawMoveArea(this.g, activeHero.moveArea);
+	        this.activeHero.drawMoveArea(g);
 		}
 	}
 	
 	public void showAttackArea() {
 		if (this.activeHero != null && this.activeHero.getState() == Hero.State.MOVED) {
 			this.activeHero.calAttackArea();
-			heroInterface.drawAttackArea(this.g, activeHero.attackArea);
+			this.activeHero.drawAttackArea(g);
 		}
 	}
 	
