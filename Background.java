@@ -3,10 +3,10 @@ import java.awt.Image;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
-public class Background extends DrawInterface implements ImageObserver {
+public class Background extends DrawTile implements ImageObserver {
 
     public Background() {
-        super(0, 0, "/game-background.png");
+        super("/game-background.png");
     }
 
     @Override

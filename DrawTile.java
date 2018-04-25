@@ -1,34 +1,33 @@
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
-public abstract class DrawInterface  implements ImageObserver  {
-    protected int x;
-    protected int y;
+public class DrawTile implements ImageObserver  {
+    protected int x = 0;
+    protected int y = 0;
     protected BufferedImage image;
     protected String imageLink;
-    public static final int WIDTH = 80;
+    public static final int WIDTH = Config.TILEWIDTH;
     
-    DrawInterface(int x, int y, String imageLink){
-        this.x = x;
-	this.y = y;		
-	BufferedImageLoader loader = new BufferedImageLoader();
-	try {
+    DrawTile(String imageLink){	
+    	BufferedImageLoader loader = new BufferedImageLoader();
+    	try {
             this.image = loader.loadImage(imageLink);
             System.out.println("Call");
-	} catch (IOException e) {
+    	} catch (IOException e) {
             e.printStackTrace();
-	}
+    	}
     }
     
     public int getX() {
-	return this.x;
+    	return this.x;
     }
 	
     public int getY() {
-	return this.y;
+    	return this.y;
     }    
      
     public void setX(int x){
@@ -45,6 +44,11 @@ public abstract class DrawInterface  implements ImageObserver  {
     
     public void draw(Graphics g){
         g.drawImage(image, (this.x+2)*WIDTH, this.y*WIDTH, WIDTH, WIDTH, (ImageObserver) this);
-    };
+    }
 
+	@Override
+	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+		// TODO Auto-generated method stub
+		return false;
+	};
 }

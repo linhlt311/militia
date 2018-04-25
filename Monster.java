@@ -1,9 +1,11 @@
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public abstract class Monster {
 	protected Position curPosition;
 	protected ArrayList<Position> moveArea;
 	protected ArrayList<Position> attackArea;
+	protected DrawTile monsterImage;
 	public Position getCurrentPosition() {
 		return curPosition;
 	}
@@ -19,6 +21,11 @@ public abstract class Monster {
             return curPosition.equals(((Monster) obj).curPosition);
         return false;
     }
+	public void draw(Graphics g) {
+		this.monsterImage.setX(this.curPosition.getX()+1);
+		this.monsterImage.setY(this.curPosition.getY()+1);
+		this.monsterImage.draw(g);
+	}
 	abstract void calMoveArea(ArrayList<Monster> pos);
 	abstract boolean move(Position pos, ArrayList<Monster> mons);
 }

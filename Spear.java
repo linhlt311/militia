@@ -2,8 +2,10 @@
 import java.util.ArrayList;
 
 public class Spear extends Hero {
+		
     public Spear(Position pos) {
         super(pos);
+        this.heroImage = new DrawTile("/spear3.png");
     }
     
     @Override
