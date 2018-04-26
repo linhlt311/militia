@@ -27,18 +27,18 @@ public class Test {
       hero.calMoveArea();
       hero.calAttackArea();
       
-      ArrayList<Position> heroMoveArea = hero.moveArea;
+      ArrayList<Position> heroMoveArea = hero.getMoveArea();
       if(!(heroMoveArea.size() == moveAreaSize)) 
           throw new MoveAreaException("Recalculate move area");
       
-      ArrayList<Position> heroAttackArea = hero.attackArea;
+      ArrayList<Position> heroAttackArea = hero.getAttackArea();
       if(!(heroAttackArea.size() == attackAreaSize)) 
           throw new AttackAreaException("Recalculate attack area");
       
       int movIndex = new Random().nextInt(moveAreaSize);
       hero.move(heroMoveArea.get(movIndex));
       
-      if (!hero.curPosition.equals(heroMoveArea.get(movIndex))) 
+      if (!hero.getCurPosition().equals(heroMoveArea.get(movIndex))) 
           throw new MoveException("Rewrite move function");
    }
    

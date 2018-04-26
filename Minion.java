@@ -4,38 +4,47 @@ import java.util.ArrayList;
 public class Minion extends Monster {
 	Minion(Position pos) {
 		super(pos);
-		this.monsterImage = new DrawTile("/monster2.png");
+		this.setMonsterImage(new DrawTile("/monster2.png"));
 	}
 
 	@Override
 	public void calMoveArea(ArrayList<Monster> monsters) {
-		moveArea.clear();
-		Position tmp = new Position(curPosition.getX()+1,curPosition.getY());
-		if (tmp.getX() < Config.GAME_WIDTH) this.moveArea.add(tmp);
-		tmp = new Position(curPosition.getX(),curPosition.getY());
-		this.moveArea.add(tmp);
-		tmp = new Position(curPosition.getX()-1,curPosition.getY());
-		if (tmp.getX() >= 0) this.moveArea.add(tmp);
-		tmp = new Position(curPosition.getX(),curPosition.getY()+1);
-		if (tmp.getY() <= Config.GAME_HEIGHT) this.moveArea.add(tmp);
-		tmp = new Position(curPosition.getX(),curPosition.getY()-1);
-		if (tmp.getY() >= 0) this.moveArea.add(tmp);
+		ArrayList<Position> mArea = new ArrayList<Position>();
+		Position tmp = new Position(getCurPosition().getX()+1,getCurPosition().getY());
+		if (tmp.valid()) mArea.add(tmp);
+		tmp = new Position(getCurPosition().getX(),getCurPosition().getY());
+		mArea.add(tmp);
+		tmp = new Position(getCurPosition().getX()-1,getCurPosition().getY());
+		if (tmp.valid()) mArea.add(tmp);
+		tmp = new Position(getCurPosition().getX(),getCurPosition().getY()+1);
+		if (tmp.valid()) mArea.add(tmp);
+		tmp = new Position(getCurPosition().getX(),getCurPosition().getY()-1);
+		if (tmp.valid()) mArea.add(tmp);
 		for(Monster mons: monsters) {
-			Position pos = mons.curPosition;
-			moveArea.remove(pos);
+			Position pos = mons.getCurPosition();
+			mArea.remove(pos);
 		}
+		setMoveArea(mArea);
 	}
 	
 	@Override
-	public boolean move(Position pos, ArrayList<Monster> mons) {
+	public boolean move(ArrayList<Hero> heros, ArrayList<Monster> mons) {
 		calMoveArea(mons);
-		Position min = curPosition;
-		for (Position position: moveArea) {
-			if (min.getDistance(pos) > position.getDistance(pos)) {
-				min = position;
+		Position monPos = getCurPosition();
+		Position min = heros.get(0).getCurPosition();
+		for (Hero hero: heros) {
+			Position heroPos = hero.getCurPosition();
+			if (min.getDistance(monPos) > heroPos.getDistance(monPos)) {
+				min = heroPos;
 			}
 		}
-		curPosition = min;
+		Position min2 = getCurPosition();
+		for (Position position: getMoveArea()) {
+			if (min2.getDistance(min) > position.getDistance(min)) {
+				min2 = position;
+			}
+		}
+		setCurPosition(min2);
 		return true;
 	}
 
